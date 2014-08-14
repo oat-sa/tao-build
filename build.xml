@@ -90,6 +90,14 @@
 			<formatter type="checkstyle" outfile="build/logs/checkstyle.xml"/>
 		</phpcodesniffer>
 	</target>
+	<target name="tools-parallel">
+		<parallel threadCount="2">
+			<phingcall target="pdepend"/>
+			<phingcall target="phpcpd"/>
+			<phingcall target="phpcs"/>
+			<phingcall target="phploc" />
 
-
+		</parallel>
+	</target>
+	<target name="build" depends="clean,prepare,clone,tools-parallel"/>
 </project>
