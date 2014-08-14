@@ -19,7 +19,7 @@
 	</target>
 	<resolvepath propertyName="src.dir.resolved" file="src" />
 
-	<target name="clone" depends="prepare"> 
+	<target name="clone" depends="clean,prepare"> 
 		<gitclone repository="git@github.com:oat-sa/package-tao.git" targetPath="src" />
 		<composer command="install" composer="/usr/local/bin/composer">
 			 <arg value="--working-dir" />
