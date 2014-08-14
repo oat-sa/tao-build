@@ -1,0 +1,79 @@
+<project name="build tao" default="build" basedir=".">
+	<property file="../build.properties" />
+
+	<target name="help">
+		<echo msg ="Available Command : " />
+		<exec executable="phing" passthru="true">
+			<arg value="-l" />
+		</exec>
+	</target>
+
+	<target name="clean">
+		<delete dir="build" />
+		<delete dir="src" />
+	</target>
+	<target name="prepare">
+		<mkdir dir="build/logs"/>
+		<mkdir dir="build/pdepend/"/>
+		<mkdir dir="src" />
+	</target>
+	<resolvepath propertyName="src.dir.resolved" file="src" />
+
+	<target name="clone" depends="prepare"> 
+		<gitclone repository="git@github.com:oat-sa/package-tao.git" targetPath="src" />
+		<composer command="install" composer="/usr/local/bin/composer">
+			 <arg value="--working-dir" />
+			 <arg path="${src.dir.resolved}" />
+		</composer>
+	</target>
+	<target name="lint" depends="prepare">
+		<phplint haltonfailure="true">
+		  <fileset dir="${src.dir.resolved}">
+		    <include name="**/*.php"/>
+		    <exclude name="**/vendor/**" />
+		  </fileset>
+		</phplint>
+	</target>
+	<target name="phploc" depends="prepare" description="Measure project size using PHPLOC">
+		<phploc reportType="csv" reportName="phploc" reportDirectory="build/logs">
+			<fileset dir="${src.dir.resolved}">
+			    <include name="**/*.php"/>
+			    <exclude name="**/vendor/**" />
+		  </fileset>
+		</phploc>
+	</target>
+	<target name="pdepend" depends="prepare" description="Calculate software metrics using PHP_Depend">
+		<phpdepend>
+			<logger type="jdepend-xml" outfile="build/logs/jdepend.xml"/>
+			<logger type="jdepend-chart" outfile="build/pdepend/dependencies.svg" />
+			<logger type="overview-pyramid" outfile="build/pdepend/overview-pyramid.svg" />
+			<fileset dir="${src.dir.resolved}">
+			    <include name="**/*.php"/>
+			    <exclude name="**/vendor/**" />
+			</fileset>
+		</phpdepend>
+	</target>
+
+	<target name="phpcpd" description="Find duplicate code using PHPCPD">
+		<phpcpd minLines="8">
+			<fileset dir="${src.dir.resolved}">
+			    <include name="**/*.php"/>
+			    <exclude name="**/vendor/**"/>
+			    <exclude name="**/locales/**"/>
+			    <exclude name="**/test/**"/>
+			</fileset>
+		    <formatter type="pmd" outfile="build/logs/pmd-cpd.xml"/>
+		</phpcpd>
+	</target>
+
+	<target name="phpmd">
+		<phpmd>
+			<fileset dir="${src.dir.resolved}">
+			    <include name="**/*.php"/>
+			    <exclude name="**/vendor/**" />
+			</fileset>
+			<formatter type="xml" outfile="build/logs/pmd.xml"/>
+
+		</phpmd>
+	</target>	
+</project>
