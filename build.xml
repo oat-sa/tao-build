@@ -67,13 +67,29 @@
 	</target>
 
 	<target name="phpmd">
-		<phpmd>
+		<phpmd rulesets="conf/phpmd.xml">
 			<fileset dir="${src.dir.resolved}">
 			    <include name="**/*.php"/>
 			    <exclude name="**/vendor/**" />
+			    <exclude name="**/locales/**"/>
+			    <exclude name="**/test/**"/>
 			</fileset>
 			<formatter type="xml" outfile="build/logs/pmd.xml"/>
 
 		</phpmd>
-	</target>	
+	</target>
+
+	<target name="phpcs">
+		<phpcodesniffer standard="conf/phpcs.xml">
+			<fileset dir="${src.dir.resolved}">
+			    <include name="**/*.php"/>
+			    <exclude name="**/vendor/**" />
+			    <exclude name="**/locales/**"/>
+			    <exclude name="**/test/**"/>
+			</fileset>
+			<formatter type="checkstyle" outfile="build/logs/checkstyle.xml"/>
+		</phpcodesniffer>
+	</target>
+
+
 </project>

@@ -1,0 +1,38 @@
+<ruleset name="TAO">
+	<description>TAO coding standard</description>
+	<exclude-pattern>*/test/*</exclude-pattern>
+	<exclude-pattern>*/data/*</exclude-pattern>
+	<exclude-pattern>*/includes/*</exclude-pattern>
+	<exclude-pattern>*.js</exclude-pattern>
+	<exclude-pattern>*/utrv1/lib/*</exclude-pattern>
+	<exclude-pattern>*/tao/lib/*</exclude-pattern>
+	<exclude-pattern>*/update/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/plugins/*</exclude-pattern>
+
+	<rule ref="Generic.Commenting.Todo"/>        
+	<rule ref="Generic.Commenting.Fixme"/>
+
+	<rule ref="Generic.Files.OneClassPerFile" />
+
+	<rule ref="Generic.ControlStructures.InlineControlStructure">
+		<exclude-pattern>*.tpl.*</exclude-pattern>
+		<exclude-pattern>*.tpl</exclude-pattern>
+	</rule>
+
+	<rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
+	<rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+
+	<rule ref="Generic.NamingConventions.ConstructorName"/>
+
+	<rule ref="Generic.PHP.LowerCaseConstant" />
+	<rule ref="Generic.PHP.DisallowShortOpenTag">
+		<exclude-pattern>*.tpl*</exclude-pattern>		
+	</rule>
+
+
+	<rule ref="Generic.Strings.UnnecessaryStringConcat" />
+
+
+</ruleset>

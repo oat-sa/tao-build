@@ -1,0 +1,64 @@
+<phpunit verbose="false">
+	<logging>
+		<log type="junit" target="build/mysql-suite.xml" logIncompleteSkipped="false"/>
+	</logging>
+	<testsuites>
+		<testsuite name="generis">
+			<directory>source/generis/test/</directory>
+		</testsuite>
+		<testsuite name="filemanager">
+			<directory>source/filemanager/test</directory>
+		</testsuite>
+		<testsuite name="tao">
+			<directory>source/tao/test</directory>
+		</testsuite>
+		<testsuite name="taoItems">
+			<directory>source/taoItems/test</directory>
+		</testsuite>
+		<testsuite name="taoGroups">
+			<directory>source/taoGroups/test</directory>
+		</testsuite>
+
+		<testsuite name="taoDelivery">
+			<directory>source/taoDelivery/test</directory>
+		</testsuite>
+		<testsuite name="taoCampaign">
+			<directory>source/taoCampaign/test</directory>
+		</testsuite>
+		<testsuite name="taoSubjects">
+			<directory>source/taoSubjects/test</directory>
+		</testsuite>
+		<testsuite name="taoTests">
+			<directory>source/taoTests/test</directory>
+		</testsuite>
+		<testsuite name="taoOpenWebItem">
+			<directory>source/taoOpenWebItem/test</directory>
+		</testsuite>
+		<testsuite name="taoLti">
+			<directory>source/taoLti/test</directory>
+		</testsuite>
+		<testsuite name="taoQTI">
+			<directory>source/taoQTI/test</directory>
+		</testsuite>
+		<testsuite name="taoQtiCommon">
+			<directory>source/taoQtiCommon/test</directory>
+		</testsuite>
+		<testsuite name="taoQtiTest">
+			<directory>source/taoQtiTest/test</directory>
+		</testsuite>
+
+
+		<testsuite name="taoWfTest">
+			<directory>source/taoWfTest/test</directory>
+		</testsuite>
+		<testsuite name="wfEngine">
+			<directory>source/wfEngine/test</directory>
+			<exclude>>wfEngine/test/InteractiveServiceServiceTest</exclude>
+		</testsuite>
+
+		<testsuite name="wfAuthoring">
+			<directory>source/wfAuthoring/test</directory>
+		</testsuite>
+
+	</testsuites>
+</phpunit>
