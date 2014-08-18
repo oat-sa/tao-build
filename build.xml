@@ -20,6 +20,7 @@
 	<resolvepath propertyName="src.dir.resolved" file="src" />
 
 	<target name="clone" depends="clean,prepare"> 
+
 		<gitclone repository="git@github.com:oat-sa/package-tao.git" targetPath="src" />
 		<composer command="install" composer="/usr/local/bin/composer">
 			 <arg value="--working-dir" />
@@ -99,5 +100,13 @@
 
 		</parallel>
 	</target>
-	<target name="build" depends="clean,prepare,clone,tools-parallel"/>
+
+	<target name="build_source" description="Create Zip with the source, remove non GPL lib">
+		<delete includeemptydirs="true">
+	    		<fileset dir="src/taoQtiItem/views/js/mathjax" includes="**/*" defaultexcludes="false"/>
+	  	</delete>
+		<zip destfile="build/${release.source.name}.zip" basedir="src" />
+	</target>
+
+	<target name="build" depends="clean,prepare,clone,tools-parallel,build_source" description="Main task"/>
 </project>
