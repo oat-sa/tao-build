@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<project name="taoinstall" basedir="." default="test.install">
+    <property file="../../build.properties" />
+
+    <taskdef name="taoinstall" classname="task/InstallTaoTask" />
+    <typedef name="taoDbConfig" classname="task/TaoDbConfig" />
+    <typedef name="generisConfig" classname="task/GenerisConfig" />
+    <typedef name="taoConfig" classname="task/TaoConfig" />
+
+
+    <resolvepath propertyName="src.dir.resolved" file="../src" />
+
+    <target name="test.install">
+      <taoinstall taoPath="${src.dir.resolved}" >
+      	<taoConfig 	
+      		login="${user.login}"
+      		pass="${user.pass}">
+      	<taoDbConfig 
+      		dbDriver="${db.driver}" 
+      		dbHost="${db.host}"
+      		dbUser="${db.user}"
+      		dbPass="${db.pass}"
+      		dbName="${db.name}"
+      	/>
+      	<generisConfig       		
+      		instanceName="${module.name}"
+      		moduleUrl="${module.url}"
+      		moduleNs="${module.namespace}"
+      		moduleMode="${module.mode}"
+      		dataPath="${src.dir.resolved}/data/"/>
+      </taoConfig>
+      </taoinstall>
+    </target>
+</project>

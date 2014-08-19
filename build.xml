@@ -27,6 +27,8 @@
 			 <arg path="${src.dir.resolved}" />
 		</composer>
 	</target>
+
+
 	<target name="lint" depends="prepare">
 		<phplint haltonfailure="true">
 		  <fileset dir="${src.dir.resolved}">
@@ -108,5 +110,33 @@
 		<zip destfile="build/${release.source.name}.zip" basedir="src" />
 	</target>
 
-	<target name="build" depends="clean,prepare,clone,tools-parallel,build_source" description="Main task"/>
+	<includepath classpath="task" />
+	<taskdef name="taoinstall" classname="InstallTaoTask" />
+    <typedef name="taoDbConfig" classname="TaoDbConfig" />
+    <typedef name="generisConfig" classname="GenerisConfig" />
+    <typedef name="taoConfig" classname="TaoConfig" />
+
+	<target name="install" description="install tao">
+		<taoinstall taoPath="${src.dir.resolved}" >
+	      	<taoConfig 	
+	      		login="${user.login}"
+	      		pass="${user.pass}">
+	      	<taoDbConfig 
+	      		dbDriver="${db.driver}" 
+	      		dbHost="${db.host}"
+	      		dbUser="${db.user}"
+	      		dbPass="${db.pass}"
+	      		dbName="${db.name}"
+	      	/>
+	      	<generisConfig       		
+	      		instanceName="${module.name}"
+	      		moduleUrl="${module.url}"
+	      		moduleNs="${module.namespace}"
+	      		moduleMode="${module.mode}"
+	      		dataPath="${src.dir.resolved}/data/"/>
+	      	</taoConfig>
+      	</taoinstall>
+  	</target>
+
+	<target name="build" depends="clean,prepare,clone,tools-parallel,build_source,install" description="Main task"/>
 </project>
