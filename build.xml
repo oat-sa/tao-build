@@ -23,6 +23,15 @@
 	<target name="clone" depends="clean,prepare"> 
 
 		<gitclone repository="git@github.com:oat-sa/package-tao.git" targetPath="src" />
+		<gitfetch 
+			repository="${src.dir.resolved}" 		
+			source="origin" 
+			refspec="all_extensions:all_extensions"
+		/>
+		<gitcheckout
+    		repository="${src.dir.resolved}"
+    		branchname="all_extensions"
+    	/>
 		<composer command="install" composer="/usr/local/bin/composer">
 			 <arg value="--working-dir" />
 			 <arg path="${src.dir.resolved}" />
@@ -30,7 +39,7 @@
 	</target>
 
 
-	<target name="lint" depends="prepare">
+	<target name="lint" >
 		<phplint haltonfailure="true">
 		  <fileset dir="${src.dir.resolved}">
 		    <include name="**/*.php"/>
@@ -38,7 +47,7 @@
 		  </fileset>
 		</phplint>
 	</target>
-	<target name="phploc" depends="prepare" description="Measure project size using PHPLOC">
+	<target name="phploc" description="Measure project size using PHPLOC">
 		<phploc reportType="csv" reportName="phploc" reportDirectory="build/logs">
 			<fileset dir="${src.dir.resolved}">
 			    <include name="**/*.php"/>
@@ -46,7 +55,7 @@
 		  </fileset>
 		</phploc>
 	</target>
-	<target name="pdepend" depends="prepare" description="Calculate software metrics using PHP_Depend">
+	<target name="pdepend" description="Calculate software metrics using PHP_Depend">
 		<phpdepend>
 			<logger type="jdepend-xml" outfile="build/logs/jdepend.xml"/>
 			<logger type="jdepend-chart" outfile="build/pdepend/dependencies.svg" />
@@ -144,5 +153,5 @@
   		<exec command="phpunit -c conf/phpunit_mysql.xml" logoutput="true" passthru="true" />
   	</target>
 
-	<target name="build" depends="clean,prepare,clone,package,tools-parallel,install,phpunit" description="Main task"/>
+	<target name="build" depends="clone,package,tools-parallel,install,phpunit" description="Main task"/>
 </project>
