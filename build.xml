@@ -144,5 +144,5 @@
   		<exec command="phpunit -c conf/phpunit_mysql.xml" logoutput="true" passthru="true" />
   	</target>
 
-	<target name="build" depends="clean,prepare,clone,tools-parallel,package,install" description="Main task"/>
+	<target name="build" depends="clean,prepare,clone,package,tools-parallel,install,phpunit" description="Main task"/>
 </project>
