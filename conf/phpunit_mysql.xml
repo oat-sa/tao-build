@@ -1,95 +1,94 @@
-<phpunit verbose="false">
+<phpunit verbose="true">
 	<logging>
-		<log type="coverage-html" target="./coverage" charset="UTF-8"
-			highlight="false" lowUpperBound="35" highLowerBound="70" />
-	 	<log type="junit" target="../mysql-test-suite.xml" logIncompleteSkipped="false"/>
+		<log type="coverage-html" target="../build/coverage" charset="UTF-8"
+		highlight="false" lowUpperBound="35" highLowerBound="70" />
+		<log type="junit" target="../build/logs/mysql-test-suite.xml" logIncompleteSkipped="false"/>
 	</logging>
-<testsuites>
+	<testsuites>
 		<testsuite name="filemanager">
-			<directory>../source/filemanager/test</directory>
+			<directory>../src/filemanager/test</directory>
 		</testsuite>
 		<testsuite name="funcAcl">
-                        <directory>../source/funcAcl/test</directory>
-                </testsuite>
+            <directory>../src/funcAcl/test</directory>
+        </testsuite>
 		<testsuite name="generis">
-			<directory>../source/generis/test/</directory>
+			<directory>../src/generis/test/</directory>
 		</testsuite>
-		<testsuite name="generisHard">
-                        <directory>../source/generisHard/test/</directory>
-                </testsuite>
 		<testsuite name="tao">
-			<directory>../source/tao/test</directory>
+			<directory>../src/tao/test</directory>
 		</testsuite>
 		<testsuite name="taoCampaign">
-			<directory>../source/taoCampaign/test</directory>
+			<directory>../src/taoCampaign/test</directory>
 		</testsuite>
 		<testsuite name="taoDelivery">
-			<directory>../source/taoDelivery/test</directory>
+			<directory>../src/taoDelivery/test</directory>
 		</testsuite>
 		<testsuite name="taoGroups">
-			<directory>../source/taoGroups/test</directory>
+			<directory>../src/taoGroups/test</directory>
 		</testsuite>
 		<testsuite name="taoItems">
-			<directory>../source/taoItems/test</directory>
+			<directory>../src/taoItems/test</directory>
 		</testsuite>
 		<testsuite name="taoLti">
-			<directory>../source/taoLti/test</directory>
+			<directory>src/taoLti/test</directory>
 		</testsuite>
 		<testsuite name="taoOpenWebItem">
-			<directory>../source/taoOpenWebItem/test</directory>
+			<directory>../src/taoOpenWebItem/test</directory>
 		</testsuite>
-		<testsuite name="taoQtiCommon">
-			<directory>../source/taoQtiCommon/test</directory>
-			<directory>../source/taoQtiCommon/lib/qtism/test</directory>
+		<testsuite name="lib-tao-qti">
+			<directory>../src/vendor/oat-sa/lib-tao-qti/test</directory>
+			<directory>../src/vendor/qtism/qtism/test</directory>
 		</testsuite>
 		<testsuite name="taoQtiItem">
-			<directory>../source/taoQtiItem/test</directory>
+			<directory>../src/taoQtiItem/test</directory>
 		</testsuite>
 		<testsuite name="taoQtiTest">
-			<directory>../source/taoQtiTest/test</directory>
+			<directory>../src/taoQtiTest/test</directory>
 		</testsuite>
 		<testsuite name="taoResults">
-			<directory>../source/taoResults/test</directory>
+			<directory>../src/taoResults/test</directory>
 		</testsuite>
 		<testsuite name="taoSubjects">
-			<directory>../source/taoSubjects/test</directory>
+			<directory>../src/taoSubjects/test</directory>
 		</testsuite>
 		<testsuite name="taoTests">
-			<directory>../source/taoTests/test</directory>
+			<directory>../src/taoTests/test</directory>
 		</testsuite>
 		<testsuite name="taoWfDelivery">
-			<directory>../source/taoWfDelivery/test</directory>
+			<directory>../src/taoWfDelivery/test</directory>
 		</testsuite>
 		<testsuite name="taoWfTest">
-			<directory>../source/taoWfTest/test</directory>
+			<directory>../src/taoWfTest/test</directory>
 		</testsuite>
 		<testsuite name="wfEngine">
-			<directory>../source/wfEngine/test</directory>
+			<directory>../src/wfEngine/test</directory>
 		</testsuite>
 		<testsuite name="wfAuthoring">
-			<directory>../source/wfAuthoring/test</directory>
+			<directory>../src/wfAuthoring/test</directory>
 		</testsuite>
 	</testsuites>
 
 <filter>
   	<whitelist>
-		<directory suffix=".php">../source</directory>
+		<directory suffix=".php">../src</directory>
 		<exclude>
-			<directory>../source/**/vendor</directory>
-			<directory>../source/generis/includes</directory>
-			<directory>../source/tao/lib</directory>
-			<directory>../source/tao/install</directory>
-			<directory>../source/**/locales</directory>
-			<directory>../source/**/actions</directory>
-			<directory>../source/**/controller</directory>
-			<directory>../source/**/test</directory>
-			<directory>../source/**/sample</directory>
-			<directory>../source/**/includes</directory>
-			<directory>../source/**/scripts</directory>
-			<directory>../source/**/plugins</directory>
-		 	<directory>../source/**/views</directory>
-			<directory suffix="index.php">../source</directory>
-			<directory suffix="manifest.php">../source</directory>
+			<directory>../src/vendor</directory>
+			<directory>../src/data</directory>
+			<directory>../src/config</directory>
+			<directory>../src/generis/includes</directory>
+			<directory>../src/tao/lib</directory>
+			<directory>../src/tao/install</directory>
+			<directory>../src/**/locales</directory>
+			<directory>../src/**/actions</directory>
+			<directory>../src/**/controller</directory>
+			<directory>../src/**/test</directory>
+			<directory>../src/**/sample</directory>
+			<directory>../src/**/includes</directory>
+			<directory>../src/**/scripts</directory>
+			<directory>../src/**/plugins</directory>
+		 	<directory>../src/**/views</directory>
+			<directory suffix="index.php">../src</directory>
+			<directory suffix="manifest.php">../src</directory>
 		</exclude>
 	</whitelist>
 </filter>

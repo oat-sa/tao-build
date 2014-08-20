@@ -7,10 +7,6 @@ class TaoConfig extends DataType {
 	private $taoDbConfig;
 	private $generisConfig;
 
-
-
-
-
 	private $login;
 	private $pass;
 

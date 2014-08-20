@@ -15,6 +15,7 @@
 	<target name="prepare">
 		<mkdir dir="build/logs"/>
 		<mkdir dir="build/pdepend/"/>
+		<mkdir dir="build/coverage" />
 		<mkdir dir="src" />
 	</target>
 	<resolvepath propertyName="src.dir.resolved" file="src" />
@@ -103,7 +104,7 @@
 		</parallel>
 	</target>
 
-	<target name="build_source" description="Create Zip with the source, remove non GPL lib">
+	<target name="package" description="Create Zip with the source, remove non GPL lib">
 		<delete includeemptydirs="true">
 	    		<fileset dir="src/taoQtiItem/views/js/mathjax" includes="**/*" defaultexcludes="false"/>
 	  	</delete>
@@ -138,5 +139,10 @@
       	</taoinstall>
   	</target>
 
-	<target name="build" depends="clean,prepare,clone,tools-parallel,build_source,install" description="Main task"/>
+  	<target name="phpunit">
+
+  		<exec command="phpunit -c conf/phpunit_mysql.xml" logoutput="true" passthru="true" />
+  	</target>
+
+	<target name="build" depends="clean,prepare,clone,tools-parallel,package,install" description="Main task"/>
 </project>
