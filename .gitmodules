@@ -1,0 +1,3 @@
+[submodule "task"]
+	path = task
+	url = git@github.com:oat-sa/phing-task-tao.git
