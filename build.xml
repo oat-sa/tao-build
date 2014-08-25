@@ -127,6 +127,9 @@
     <typedef name="taoConfig" classname="TaoConfig" />
 
 	<target name="install" description="install tao">
+
+		<property name="extensions_list" value="funcAcl,generis,generisHard,ltiDeliveryProvider,ltiTestConsumer,ontoBrowser,qtiItemPci,tao,taoAltResultStorage,taoCampaign,taoCe,taoDelivery,taoDevTools,taoGroups,taoItems,taoLti,taoLtiBasicOutcome,taoOpenWebItem,taoQtiItem,taoQtiTest,taoResults,taoResultServer,taoResultsUdp,taoSimpleDelivery,taoSubjects,taoTests,taoWfAdvTest,taoWfTest,wfAuthoring,wfEngine" 
+		/>
 		<taoinstall taoPath="${src.dir.resolved}" >
 	      	<taoConfig 	
 	      		login="${user.login}"
@@ -143,7 +146,9 @@
 	      		moduleUrl="${module.url}"
 	      		moduleNs="${module.namespace}"
 	      		moduleMode="${module.mode}"
-	      		dataPath="${src.dir.resolved}/data/"/>
+	      		dataPath="${src.dir.resolved}/data/"
+	      		extensions="${extensions_list}"
+	      	/>
 	      	</taoConfig>
       	</taoinstall>
   	</target>
