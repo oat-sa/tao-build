@@ -9,7 +9,7 @@ class GenerisConfig extends DataType {
 	private $moduleNs;
 	private $instanceName;
 	private $timezone = null;
-	private $extensions;
+	private $extensions = null;
 	private $dataPath;
 
 
@@ -50,7 +50,7 @@ class GenerisConfig extends DataType {
 			"module_lang"		=> "en-US",
 			'timezone'   		=> $this->timezone != null ? $this->timezone : date_default_timezone_get(),
 			"file_path" 		=> $this->dataPath,
-			"extensions"		=> 'taoCe'
+			"extensions"		=> $this->extensions != null ? $this->extensions : 'taoCe' 
 
 		);
 	}
