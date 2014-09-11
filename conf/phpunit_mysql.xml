@@ -52,7 +52,7 @@
 			<directory>../src/taoResults/test</directory>
 		</testsuite>
 		<testsuite name="taoSubjects">
-			<directory>../src/taoSubjects/test</directory>
+			<directory>../src/taoTestTaker/test</directory>
 		</testsuite>
 		<testsuite name="taoTests">
 			<directory>../src/taoTests/test</directory>
