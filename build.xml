@@ -128,7 +128,7 @@
 
 	<target name="install" description="install tao">
 
-		<property name="extensions_list" value="funcAcl,generis,generisHard,ltiDeliveryProvider,ltiTestConsumer,ontoBrowser,qtiItemPci,tao,taoAltResultStorage,taoCampaign,taoCe,taoDelivery,taoDevTools,taoGroups,taoItems,taoLti,taoLtiBasicOutcome,taoOpenWebItem,taoQtiItem,taoQtiTest,taoResults,taoResultServer,taoResultsUdp,taoSimpleDelivery,taoSubjects,taoTests,taoWfAdvTest,taoWfTest,wfAuthoring,wfEngine" 
+		<property name="extensions_list" value="funcAcl,generis,generisHard,ltiDeliveryProvider,ltiTestConsumer,ontoBrowser,qtiItemPci,tao,taoAltResultStorage,taoCampaign,taoCe,taoDelivery,taoDevTools,taoGroups,taoItems,taoLti,taoLtiBasicOutcome,taoOpenWebItem,taoQtiItem,taoQtiTest,taoResults,taoResultServer,taoResultsUdp,taoSimpleDelivery,taoTestTaker,taoTests,taoWfAdvTest,taoWfTest,wfAuthoring,wfEngine" 
 		/>
 		<taoinstall taoPath="${src.dir.resolved}" >
 	      	<taoConfig 	
