@@ -26,7 +26,7 @@
 			<directory>source/taoCampaign/test</directory>
 		</testsuite>
 		<testsuite name="taoSubjects">
-			<directory>source/taoSubjects/test</directory>
+			<directory>source/taoTestTaker/test</directory>
 		</testsuite>
 		<testsuite name="taoTests">
 			<directory>source/taoTests/test</directory>
