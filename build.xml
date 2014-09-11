@@ -154,6 +154,7 @@
   	</target>
 
   	<target name="phpunit">
+  		<chmod file="${src.dir.resolved}" mode="0777" />
 
   		<exec command="phpunit -c conf/phpunit_mysql.xml" logoutput="true" passthru="true" />
   	</target>
