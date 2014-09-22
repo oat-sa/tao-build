@@ -79,15 +79,54 @@
 		</phpcpd>
 	</target>
 
-	<target name="phpmd">
-		<phpmd rulesets="conf/phpmd.xml">
+	<target name="phpmd-design">
+		<phpmd rulesets="design">
 			<fileset dir="${src.dir.resolved}">
 			    <include name="**/*.php"/>
 			    <exclude name="**/vendor/**" />
 			    <exclude name="**/locales/**"/>
 			    <exclude name="**/test/**"/>
 			</fileset>
-			<formatter type="xml" outfile="build/logs/pmd.xml"/>
+			<formatter type="xml" outfile="build/logs/pmd-design.xml"/>
+
+		</phpmd>
+	</target>
+
+	<target name="phpmd-naming">
+		<phpmd rulesets="naming">
+			<fileset dir="${src.dir.resolved}">
+			    <include name="**/*.php"/>
+			    <exclude name="**/vendor/**" />
+			    <exclude name="**/locales/**"/>
+			    <exclude name="**/test/**"/>
+			</fileset>
+			<formatter type="xml" outfile="build/logs/pmd-naming.xml"/>
+
+		</phpmd>
+	</target>
+
+	<target name="phpmd">
+		<phpmd rulesets="codesize">
+			<fileset dir="${src.dir.resolved}">
+			    <include name="**/*.php"/>
+			    <exclude name="**/vendor/**" />
+			    <exclude name="**/locales/**"/>
+			    <exclude name="**/test/**"/>
+			</fileset>
+			<formatter type="xml" outfile="build/logs/pmd-codesize.xml"/>
+
+		</phpmd>
+	</target>
+
+	<target name="phpmd-unusedcode">
+		<phpmd rulesets="unusedcode">
+			<fileset dir="${src.dir.resolved}">
+			    <include name="**/*.php"/>
+			    <exclude name="**/vendor/**" />
+			    <exclude name="**/locales/**"/>
+			    <exclude name="**/test/**"/>
+			</fileset>
+			<formatter type="xml" outfile="build/logs/pmd-unusedcode.xml"/>
 
 		</phpmd>
 	</target>
@@ -109,7 +148,9 @@
 			<phingcall target="phpcpd"/>
 			<phingcall target="phpcs"/>
 			<phingcall target="phploc" />
-
+			<phingcall target="phpmd-unusedcode" />
+			<phingcall target="phpmd-naming" />
+			<phingcall target="phpmd-design" />
 		</parallel>
 	</target>
 
@@ -128,7 +169,7 @@
 
 	<target name="install" description="install tao">
 
-		<property name="extensions_list" value="funcAcl,generis,generisHard,ltiDeliveryProvider,ltiTestConsumer,ontoBrowser,qtiItemPci,tao,taoAltResultStorage,taoCampaign,taoCe,taoDelivery,taoDevTools,taoGroups,taoItems,taoLti,taoLtiBasicOutcome,taoOpenWebItem,taoQtiItem,taoQtiTest,taoResults,taoResultServer,taoResultsUdp,taoSimpleDelivery,taoTestTaker,taoTests,taoWfAdvTest,taoWfTest,wfAuthoring,wfEngine" 
+		<property name="extensions_list" value="funcAcl,generis,generisHard,ltiDeliveryProvider,ontoBrowser,qtiItemPci,tao,taoAltResultStorage,taoCampaign,taoCe,taoDelivery,taoDevTools,taoGroups,taoItems,taoLti,taoLtiBasicOutcome,taoOpenWebItem,taoQtiItem,taoQtiTest,taoResults,taoResultServer,taoResultsUdp,taoSimpleDelivery,taoTestTaker,taoTests,taoWfAdvTest,taoWfTest,wfAuthoring,wfEngine" 
 		/>
 		<taoinstall taoPath="${src.dir.resolved}" >
 	      	<taoConfig 	
@@ -153,7 +194,7 @@
       	</taoinstall>
   	</target>
 
-  	<target name="phpunit">
+  	<target name="phpunit" depends="install">
   		<chmod file="${src.dir.resolved}" mode="0777" />
 
   		<exec command="phpunit -c conf/phpunit_mysql.xml" logoutput="true" passthru="true" />
