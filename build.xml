@@ -30,7 +30,7 @@
 		/>
 		<gitcheckout
     		repository="${src.dir.resolved}"
-    		branchname="all_extensions"
+    		branchname="develop"
     	/>
 		<composer command="install" composer="/usr/local/bin/composer">
 			 <arg value="--working-dir" />
@@ -148,9 +148,6 @@
 			<phingcall target="phpcpd"/>
 			<phingcall target="phpcs"/>
 			<phingcall target="phploc" />
-			<phingcall target="phpmd-unusedcode" />
-			<phingcall target="phpmd-naming" />
-			<phingcall target="phpmd-design" />
 		</parallel>
 	</target>
 
