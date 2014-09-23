@@ -26,7 +26,7 @@
 		<gitfetch 
 			repository="${src.dir.resolved}" 		
 			source="origin" 
-			refspec="all_extensions:all_extensions"
+			refspec="develop:develop"
 		/>
 		<gitcheckout
     		repository="${src.dir.resolved}"
