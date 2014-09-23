@@ -194,7 +194,7 @@
   	<target name="phpunit" depends="install">
   		<chmod file="${src.dir.resolved}" mode="0777" />
 
-  		<exec command="phpunit -c conf/phpunit_mysql.xml" logoutput="true" passthru="true" />
+  		<exec command="~/.composer/vendor/bin/phpunit -c conf/phpunit_mysql.xml" logoutput="true" passthru="true" />
   	</target>
 
 	<target name="build" depends="clone,package,tools-parallel,install,phpunit" description="Main task"/>
