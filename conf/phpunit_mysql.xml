@@ -85,6 +85,7 @@
 			<directory>../src/**/actions</directory>
 			<directory>../src/**/controller</directory>
 			<directory>../src/**/test</directory>
+			<directory>../src/tests/**</directory>
 			<directory>../src/**/sample</directory>
 			<directory>../src/**/includes</directory>
 			<directory>../src/**/scripts</directory>
