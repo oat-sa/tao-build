@@ -130,7 +130,13 @@
 
 		</phpmd>
 	</target>
-
+	<target name="phpmd">
+			<phingcall target="phpmd-unusedcode"/>
+			<phingcall target="phpmd-codesize"/>
+			<phingcall target="phpmd-naming"/>
+			<phingcall target="phpmd-design"/>
+	</target>
+	
 	<target name="phpcs">
 		<phpcodesniffer standard="conf/phpcs.xml">
 			<fileset dir="${src.dir.resolved}">
@@ -146,10 +152,7 @@
 		<parallel threadCount="2">
 			<phingcall target="pdepend"/>
 			<phingcall target="phpcpd"/>
-			<phingcall target="phpmd-unusedcode"/>
-			<phingcall target="phpmd-codesize"/>
-			<phingcall target="phpmd-naming"/>
-			<phingcall target="phpmd-design"/>
+			<phingcall target="phpmd"/>
 			<phingcall target="phpcs"/>
 			<phingcall target="phploc" />
 		</parallel>
