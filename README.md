@@ -28,7 +28,7 @@ Unit Test
   - Generate code coverage report
 
 
-Setting up Jenkins
+Howto setup Jenkins
 -----------------
   - Create your jenkins project
   - Create the file build.properties
@@ -85,8 +85,12 @@ Setting up Jenkins
 >         Count
 >         build/logs/phploc.csv
 
+  - Setup PHPCS report 
+
+>         build/logs/checkstyle.xml
+
   - Setup PHPCPD reports
-  
+
 >         build/logs/pmd-cpd.xml
 
   - Setup Code Coverage
