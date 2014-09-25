@@ -1,37 +1,6 @@
 TAO build process
 =================
 
-Getting Started
----------------
-  - Create your jenkins project
-  - Create the file build.properties
-
->         release.version=nightly
->         release.source.name=TAO_${release.version}_build
->         
->         db.driver=
->         db.host=
->         db.name=
->         db.pass=
->         db.user=
-> 
->         module.mode=
->         module.name=
->         module.namespace=
->         module.url=
->     
->         user.login=
->         user.pass=
-
-  - Git clone this repository  
-  - Setup phing tasks
-  - Setup PMD analisys
-  - Setup phploc report
-  - Setup PHPCPD reports
-  - Setup Code Coverage
-  
-
-
 Build the package
 -----------------
 
@@ -55,5 +24,72 @@ Unit Test
 ---------
 
   - Install the platform with all extensions
-  - Run Unit test according to configration store in conf/phpunit_mysql.xml
+  - Run Unit test according to test configration stored in conf/phpunit_mysql.xml
   - Generate code coverage report
+
+
+Setting up Jenkins
+-----------------
+  - Create your jenkins project
+  - Create the file build.properties
+
+>         release.version=nightly
+>         release.source.name=TAO_${release.version}_build
+>         
+>         db.driver=
+>         db.host=
+>         db.name=
+>         db.pass=
+>         db.user=
+> 
+>         module.mode=
+>         module.name=
+>         module.namespace=
+>         module.url=
+>     
+>         user.login=
+>         user.pass=
+
+  - Git clone this repository  
+
+>         git@github.com:oat-sa/package-build.git
+
+  - Setup phing tasks
+  - Setup PMD analisys
+
+>         build/logs/pmd-*.xml
+
+  - Setup phploc report
+
+>         A - Lines of code
+>         Lines of Code
+>         build/logs/phploc.csv
+>         
+>         B - Structures
+>         Count
+>         build/logs/phploc.csv
+>         
+>         C - Testing
+>         Count
+>         build/logs/phploc.csv
+>         
+>         D - Types of Classes
+>         Count
+>         build/logs/phploc.csv
+>         
+>         E - Types of Methods
+>         Count
+>         build/logs/phploc.csv
+>         
+>         F - Types of Constants
+>         Count
+>         build/logs/phploc.csv
+
+  - Setup PHPCPD reports
+  
+>         build/logs/pmd-cpd.xml
+
+  - Setup Code Coverage
+  
+>        **/*-test-suite.xml
+  - Deploy zip file on taotesting.com
