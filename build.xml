@@ -150,11 +150,11 @@
 	</target>
 	<target name="tools-parallel">
 		<parallel threadCount="2">
-			<phingcall target="phpmd"/>
 			<phingcall target="pdepend"/>
 			<phingcall target="phpcpd"/>
 			<phingcall target="phpcs"/>
 			<phingcall target="phploc" />
+			<phingcall target="phpmd"/>
 		</parallel>
 	</target>
 
