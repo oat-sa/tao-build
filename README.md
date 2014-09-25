@@ -92,4 +92,5 @@ Setting up Jenkins
   - Setup Code Coverage
   
 >        **/*-test-suite.xml
+
   - Deploy zip file on taotesting.com
