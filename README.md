@@ -1,6 +1,37 @@
 TAO build process
 =================
 
+Getting Started
+---------------
+  - Create your jenkins project
+  - Create the file build.properties
+
+>         release.version=nightly
+>         release.source.name=TAO_${release.version}_build
+>         
+>         db.driver=
+>         db.host=
+>         db.name=
+>         db.pass=
+>         db.user=
+> 
+>         module.mode=
+>         module.name=
+>         module.namespace=
+>         module.url=
+>     
+>         user.login=
+>         user.pass=
+
+  - Git clone this repository  
+  - Setup phing tasks
+  - Setup PMD analisys
+  - Setup phploc report
+  - Setup PHPCPD reports
+  - Setup Code Coverage
+  
+
+
 Build the package
 -----------------
 
