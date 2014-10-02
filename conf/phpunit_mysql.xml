@@ -45,9 +45,6 @@
 		<testsuite name="taoDacSimple">
 			<directory>../src/taoDacSimple/test</directory>
 		</testsuite>
-		<testsuite name="taoDelivery">
-			<directory>../src/taoDelivery/test</directory>
-		</testsuite>
 		<testsuite name="taoItems">
 			<directory>../src/taoItems/test</directory>
 		</testsuite>
