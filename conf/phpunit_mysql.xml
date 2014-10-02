@@ -19,6 +19,17 @@
 		<testsuite name="generisHard">
 			<directory>../src/generis/test/</directory>
 		</testsuite>
+		<!--
+		<testsuite name="ltiDeliveryProvider">
+			<directory>../src/ltiDeliveryProvider/test</directory>
+		</testsuite>
+		<testsuite name="ltiTestConsumer>
+			<directory>../src/ltiTestConsumer/test</directory>
+		</testsuite>
+		-->
+		<testsuite name="qtiItemPci">
+			<directory>../src/qtiItemPci/test</directory>
+		</testsuite>
 		<testsuite name="tao">
 			<directory>../src/tao/test</directory>
 		</testsuite>
@@ -31,11 +42,20 @@
 		<testsuite name="taoGroups">
 			<directory>../src/taoGroups/test</directory>
 		</testsuite>
+		<testsuite name="taoDacSimple">
+			<directory>../src/taoDacSimple/test</directory>
+		</testsuite>
+		<testsuite name="taoDelivery">
+			<directory>../src/taoDelivery/test</directory>
+		</testsuite>
 		<testsuite name="taoItems">
 			<directory>../src/taoItems/test</directory>
 		</testsuite>
 		<testsuite name="taoLti">
-			<directory>src/taoLti/test</directory>
+			<directory>../src/taoLti/test</directory>
+		</testsuite>
+		<testsuite name="taoLtiBasicOutcome">
+			<directory>../src/taoLtiBasicOutcome/test</directory>
 		</testsuite>
 		<testsuite name="taoOpenWebItem">
 			<directory>../src/taoOpenWebItem/test</directory>
@@ -43,9 +63,6 @@
 		<testsuite name="lib-tao-qti">
 			<directory>../src/vendor/oat-sa/lib-tao-qti/test</directory>
 			<directory>../src/vendor/qtism/qtism/test</directory>
-		</testsuite>
-		<testsuite name="qtiItemPci">
-			<directory>qtiItemPci/test</directory>
 		</testsuite>
 		<testsuite name="taoQtiItem">
 			<directory>../src/taoQtiItem/test</directory>
@@ -56,14 +73,20 @@
 		<testsuite name="taoResults">
 			<directory>../src/taoResults/test</directory>
 		</testsuite>
-		<testsuite name="taoSubjects">
-			<directory>../src/taoTestTaker/test</directory>
+		<testsuite name="taoResultServer">
+			<directory>../src/taoResultServer/test</directory>
+		</testsuite>
+		<testsuite name="taoSimpleDelivery">
+			<directory>../src/taoSimpleDelivery/test</directory>
 		</testsuite>
 		<testsuite name="taoTests">
 			<directory>../src/taoTests/test</directory>
 		</testsuite>
-		<testsuite name="taoWfDelivery">
-			<directory>../src/taoWfDelivery/test</directory>
+		<testsuite name="taoTestTaker">
+			<directory>../src/taoTestTaker/test</directory>
+		</testsuite>
+		<testsuite name="taoWfAdvTest">
+			<directory>../src/taoWfAdvTest/test</directory>
 		</testsuite>
 		<testsuite name="taoWfTest">
 			<directory>../src/taoWfTest/test</directory>
@@ -85,7 +108,7 @@
 			<directory>../src/config</directory>
 			<directory>../src/generis/includes</directory>
 			<directory>../src/tao/lib</directory>
-			<directory>../src/tao/install</directory>
+			<directory>../src/**/install</directory>
 			<directory>../src/**/locales</directory>
 			<directory>../src/**/actions</directory>
 			<directory>../src/**/controller</directory>
@@ -98,6 +121,7 @@
 		 	<directory>../src/**/views</directory>
 			<directory suffix="index.php">../src</directory>
 			<directory suffix="manifest.php">../src</directory>
+			<directory suffix="conf.php">../src</directory>
 		</exclude>
 	</whitelist>
 </filter>
