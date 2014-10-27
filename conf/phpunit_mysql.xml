@@ -70,6 +70,9 @@
 		<testsuite name="taoResults">
 			<directory>../src/taoResults/test</directory>
 		</testsuite>
+		<testsuite name="taoOutcomeRds">
+			<directory>../src/taoOutcomeRds/test</directory>
+		</testsuite>
 		<testsuite name="taoResultServer">
 			<directory>../src/taoResultServer/test</directory>
 		</testsuite>
