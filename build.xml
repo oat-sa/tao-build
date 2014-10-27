@@ -74,6 +74,8 @@
 			    <exclude name="**/vendor/**"/>
 			    <exclude name="**/locales/**"/>
 			    <exclude name="**/test/**"/>
+			    <exclude name="**/data/**"/>
+			    <exclude name="**/*.conf.php"/>
 			</fileset>
 		    <formatter type="pmd" outfile="build/logs/cpd.xml"/>
 		</phpcpd>
