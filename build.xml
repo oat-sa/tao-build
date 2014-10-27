@@ -75,7 +75,7 @@
 			    <exclude name="**/locales/**"/>
 			    <exclude name="**/test/**"/>
 			</fileset>
-		    <formatter type="pmd" outfile="build/logs/pmd-cpd.xml"/>
+		    <formatter type="pmd" outfile="build/logs/cpd.xml"/>
 		</phpcpd>
 	</target>
 
