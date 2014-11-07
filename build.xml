@@ -63,6 +63,7 @@
 			<fileset dir="${src.dir.resolved}">
 			    <include name="**/*.php"/>
 			    <exclude name="**/vendor/**" />
+			    <exclude name="**/taoDevTools/models/templates/**" />
 			</fileset>
 		</phpdepend>
 	</target>
