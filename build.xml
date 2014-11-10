@@ -207,5 +207,8 @@
   		<exec command="~/.composer/vendor/bin/phpunit -c conf/phpunit_mysql.xml" logoutput="true" passthru="true" />
   	</target>
 
-	<target name="build" depends="clone,package,tools-parallel,install,phpunit" description="Main task"/>
+  	<target name="build_number">
+  		<exec command="echo ${buildNumber} > ${src.dir.resolved}/build"/>
+  	</target>
+	<target name="build" depends="clone,package,tools-parallel,install,phpunit,build_number" description="Main task"/>
 </project>
