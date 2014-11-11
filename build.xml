@@ -208,7 +208,7 @@
   	</target>
 
   	<target name="build_number">
-  		<exec command="echo ${buildNumber} > ${src.dir.resolved}/build"/>
+  		<exec command="echo -n ${buildNumber} > ${src.dir.resolved}/build"/>
   	</target>
 	<target name="build" depends="clone,package,tools-parallel,install,phpunit,build_number" description="Main task"/>
 </project>
