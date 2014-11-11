@@ -89,6 +89,7 @@
 			    <exclude name="**/vendor/**" />
 			    <exclude name="**/locales/**"/>
 			    <exclude name="**/test/**"/>
+			    <exclude name="**/lib/**"/>
 			</fileset>
 			<formatter type="xml" outfile="build/logs/pmd-design.xml"/>
 
@@ -102,6 +103,7 @@
 			    <exclude name="**/vendor/**" />
 			    <exclude name="**/locales/**"/>
 			    <exclude name="**/test/**"/>
+			    <exclude name="**/lib/**"/>
 			</fileset>
 			<formatter type="xml" outfile="build/logs/pmd-naming.xml"/>
 
@@ -115,6 +117,7 @@
 			    <exclude name="**/vendor/**" />
 			    <exclude name="**/locales/**"/>
 			    <exclude name="**/test/**"/>
+			    <exclude name="**/lib/**"/>
 			</fileset>
 			<formatter type="xml" outfile="build/logs/pmd-codesize.xml"/>
 
@@ -128,6 +131,7 @@
 			    <exclude name="**/vendor/**" />
 			    <exclude name="**/locales/**"/>
 			    <exclude name="**/test/**"/>
+			    <exclude name="**/lib/**"/>
 			</fileset>
 			<formatter type="xml" outfile="build/logs/pmd-unusedcode.xml"/>
 
@@ -147,6 +151,7 @@
 			    <exclude name="**/vendor/**" />
 			    <exclude name="**/locales/**"/>
 			    <exclude name="**/test/**"/>
+			    <exclude name="**/lib/**"/>
 			</fileset>
 			<formatter type="checkstyle" outfile="build/logs/checkstyle.xml"/>
 		</phpcodesniffer>
