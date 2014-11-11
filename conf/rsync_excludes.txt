@@ -2,3 +2,4 @@ config
 data
 tao/views/locales
 taoQtiItem/views/js/portableSharedLibraries
+vendor/bin
