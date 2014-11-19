@@ -1,4 +1,4 @@
-/var/www/alpha/config
+config
 data
 tao/views/locales
 taoQtiItem/views/js/portableSharedLibraries
