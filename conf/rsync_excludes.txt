@@ -5,3 +5,4 @@ taoQtiItem/views/js/portableSharedLibraries
 vendor/bin
 tao/includes/constants.php
 tao/includes/configGetFile.php
+robots.txt
