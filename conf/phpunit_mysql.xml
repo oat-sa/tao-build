@@ -67,8 +67,8 @@
 		<testsuite name="taoQtiTest">
 			<directory>../src/taoQtiTest/test</directory>
 		</testsuite>
-		<testsuite name="taoResults">
-			<directory>../src/taoResults/test</directory>
+		<testsuite name="taoOutcomeUi">
+			<directory>../src/taoOutcomeUi/test</directory>
 		</testsuite>
 		<testsuite name="taoOutcomeRds">
 			<directory>../src/taoOutcomeRds/test</directory>
