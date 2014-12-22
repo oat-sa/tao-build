@@ -7,9 +7,6 @@
 		<log type="junit" target="../build/logs/mysql-test-suite.xml" logIncompleteSkipped="false"/>
 	</logging>
 	<testsuites>
-		<testsuite name="filemanager">
-			<directory>../src/filemanager/test</directory>
-		</testsuite>
 		<testsuite name="funcAcl">
             <directory>../src/funcAcl/test</directory>
         </testsuite>
