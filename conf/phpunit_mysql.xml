@@ -13,10 +13,11 @@
 		<testsuite name="generis">
 			<directory>../src/generis/test/</directory>
 		</testsuite>
+		<!--
 		<testsuite name="generisHard">
 			<directory>../src/generis/test/</directory>
 		</testsuite>
-		<!--
+		
 		<testsuite name="ltiDeliveryProvider">
 			<directory>../src/ltiDeliveryProvider/test</directory>
 		</testsuite>
@@ -30,9 +31,11 @@
 		<testsuite name="tao">
 			<directory>../src/tao/test</directory>
 		</testsuite>
+		<!--
 		<testsuite name="taoCampaign">
 			<directory>../src/taoCampaign/test</directory>
 		</testsuite>
+		-->
 		<testsuite name="taoDelivery">
 			<directory>../src/taoDelivery/test</directory>
 		</testsuite>
