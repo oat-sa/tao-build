@@ -26,11 +26,11 @@
 		<gitfetch 
 			repository="${src.dir.resolved}" 		
 			source="origin" 
-			refspec="develop:develop"
+			refspec="3.0.0:3.0.0"
 		/>
 		<gitcheckout
     		repository="${src.dir.resolved}"
-    		branchname="develop"
+    		branchname="3.0.0"
     	/>
 		<composer command="install" composer="/usr/local/bin/composer">
 			 <arg value="--working-dir" />
@@ -181,7 +181,7 @@
 
 	<target name="install" description="install tao">
 
-		<property name="extensions_list" value="funcAcl,generis,generisHard,ltiDeliveryProvider,ontoBrowser,qtiItemPci,tao,taoAltResultStorage,taoCampaign,taoCe,taoDelivery,taoDevTools,taoGroups,taoItems,taoLti,taoLtiBasicOutcome,taoOpenWebItem,taoQtiItem,taoQtiTest,taoOutcomeRds,taoOutcomeUi,taoResultServer,taoResultsUdp,taoSimpleDelivery,taoTestTaker,taoTests,taoWfAdvTest,taoWfTest,wfAuthoring,wfEngine" 
+		<property name="extensions_list" value="funcAcl,generis,ltiDeliveryProvider,qtiItemPci,tao,taoAltResultStorage,taoCampaign,taoCe,taoDelivery,taoGroups,taoItems,taoLti,taoLtiBasicOutcome,taoOpenWebItem,taoQtiItem,taoQtiTest,taoOutcomeRds,taoOutcomeUi,taoResultServer,taoResultsUdp,taoSimpleDelivery,taoTestTaker,taoTests,taoWfTest,wfAuthoring,wfEngine" 
 		/>
 		<taoinstall taoPath="${src.dir.resolved}" >
 	      	<taoConfig 	
