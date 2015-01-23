@@ -31,11 +31,6 @@
 		<testsuite name="tao">
 			<directory>../src/tao/test</directory>
 		</testsuite>
-		<!--
-		<testsuite name="taoCampaign">
-			<directory>../src/taoCampaign/test</directory>
-		</testsuite>
-		-->
 		<testsuite name="taoDelivery">
 			<directory>../src/taoDelivery/test</directory>
 		</testsuite>
@@ -84,18 +79,6 @@
 		</testsuite>
 		<testsuite name="taoTestTaker">
 			<directory>../src/taoTestTaker/test</directory>
-		</testsuite>
-		<testsuite name="taoWfAdvTest">
-			<directory>../src/taoWfAdvTest/test</directory>
-		</testsuite>
-		<testsuite name="taoWfTest">
-			<directory>../src/taoWfTest/test</directory>
-		</testsuite>
-		<testsuite name="wfEngine">
-			<directory>../src/wfEngine/test</directory>
-		</testsuite>
-		<testsuite name="wfAuthoring">
-			<directory>../src/wfAuthoring/test</directory>
 		</testsuite>
 	</testsuites>
 
