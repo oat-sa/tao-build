@@ -181,7 +181,7 @@
 
 	<target name="install" description="install tao">
 
-		<property name="extensions_list" value="funcAcl,generis,ltiDeliveryProvider,qtiItemPci,tao,taoCe,taoDelivery,taoGroups,taoItems,taoLti,taoLtiBasicOutcome,taoOpenWebItem,taoQtiItem,taoQtiTest,taoOutcomeRds,taoOutcomeUi,taoResultServer,taoSimpleDelivery,taoTestTaker,taoTests" 
+		<property name="extensions_list" value="funcAcl,generis,ltiDeliveryProvider,qtiItemPci,tao,taoCe,taoDelivery,taoGroups,taoItems,taoLti,taoLtiBasicOutcome,taoOpenWebItem,taoQtiItem,taoQtiTest,taoOutcomeRds,taoOutcomeUi,taoResultServer,taoSimpleDelivery,taoTestTaker,taoTests,taoTestLinear" 
 		/>
 		<taoinstall taoPath="${src.dir.resolved}" >
 	      	<taoConfig 	
@@ -207,7 +207,13 @@
   	</target>
 
   	<target name="phpunit" depends="install">
-  		<chmod file="${src.dir.resolved}" mode="0777" />
+  		<chmod  mode="0777" >
+  		    <fileset dir="${src.dir.resolved}">
+  		        <include name="*" />
+  		    </fileset>
+  		</chmod>
+               
+        
 
   		<exec command="~/.composer/vendor/bin/phpunit -c conf/phpunit_mysql.xml" logoutput="true" passthru="true" />
   	</target>
