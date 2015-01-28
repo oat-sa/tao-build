@@ -213,16 +213,7 @@
                 <include name="*/data/**" />
                 <include name="*/config/**" /> 
   		    </fileset>
-  		</chmod>
-        
-        <chown  user="jenkins" group="www-data" >
-  		    <fileset dir="${src.dir.resolved}">
-  		        <include name="*" />
-                 <include name="*/data/**" />
-                <include name="*/config/**" /> 
-  		    </fileset>
-  		</chown>
-               
+  		</chmod>  
         
 
   		<exec command="~/.composer/vendor/bin/phpunit -c conf/phpunit_mysql.xml" logoutput="true" passthru="true" />
