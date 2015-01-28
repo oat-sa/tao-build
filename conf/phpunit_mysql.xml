@@ -52,10 +52,6 @@
 		<testsuite name="taoOpenWebItem">
 			<directory>../src/taoOpenWebItem/test</directory>
 		</testsuite>
-		<testsuite name="lib-tao-qti">
-			<directory>../src/vendor/oat-sa/lib-tao-qti/test</directory>
-			<directory>../src/vendor/qtism/qtism/test</directory>
-		</testsuite>
 		<testsuite name="taoQtiItem">
 			<directory>../src/taoQtiItem/test</directory>
 		</testsuite>
