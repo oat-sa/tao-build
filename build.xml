@@ -218,6 +218,8 @@
         <chown  user="jenkins" group="www-data" >
   		    <fileset dir="${src.dir.resolved}">
   		        <include name="*" />
+                 <include name="*/data/**" />
+                <include name="*/config/**" /> 
   		    </fileset>
   		</chown>
                
