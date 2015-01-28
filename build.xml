@@ -207,11 +207,19 @@
   	</target>
 
   	<target name="phpunit" depends="install">
-  		<chmod  mode="0777" >
+  		<chmod  mode="0775" >
+  		    <fileset dir="${src.dir.resolved}">
+  		        <include name="*" />
+                <include name="*/data/**" />
+                <include name="*/config/**" /> 
+  		    </fileset>
+  		</chmod>
+        
+        <chown  user="jenkins" group="www-data" >
   		    <fileset dir="${src.dir.resolved}">
   		        <include name="*" />
   		    </fileset>
-  		</chmod>
+  		</chown>
                
         
 
