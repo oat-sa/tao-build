@@ -1,5 +1,10 @@
 config
-data
+data/generis
+data/tao
+data/taoItems
+data/taoQtiTest
+data/updates
+data/version
 tao/views/locales
 taoQtiItem/views/js/portableSharedLibraries
 vendor/bin
