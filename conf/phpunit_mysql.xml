@@ -7,19 +7,17 @@
 		<log type="junit" target="../build/logs/mysql-test-suite.xml" logIncompleteSkipped="false"/>
 	</logging>
 	<testsuites>
-		<testsuite name="filemanager">
-			<directory>../src/filemanager/test</directory>
-		</testsuite>
 		<testsuite name="funcAcl">
             <directory>../src/funcAcl/test</directory>
         </testsuite>
 		<testsuite name="generis">
 			<directory>../src/generis/test/</directory>
 		</testsuite>
+		<!--
 		<testsuite name="generisHard">
 			<directory>../src/generis/test/</directory>
 		</testsuite>
-		<!--
+		
 		<testsuite name="ltiDeliveryProvider">
 			<directory>../src/ltiDeliveryProvider/test</directory>
 		</testsuite>
@@ -32,9 +30,6 @@
 		</testsuite>
 		<testsuite name="tao">
 			<directory>../src/tao/test</directory>
-		</testsuite>
-		<testsuite name="taoCampaign">
-			<directory>../src/taoCampaign/test</directory>
 		</testsuite>
 		<testsuite name="taoDelivery">
 			<directory>../src/taoDelivery/test</directory>
@@ -57,18 +52,14 @@
 		<testsuite name="taoOpenWebItem">
 			<directory>../src/taoOpenWebItem/test</directory>
 		</testsuite>
-		<testsuite name="lib-tao-qti">
-			<directory>../src/vendor/oat-sa/lib-tao-qti/test</directory>
-			<directory>../src/vendor/qtism/qtism/test</directory>
-		</testsuite>
 		<testsuite name="taoQtiItem">
 			<directory>../src/taoQtiItem/test</directory>
 		</testsuite>
 		<testsuite name="taoQtiTest">
 			<directory>../src/taoQtiTest/test</directory>
 		</testsuite>
-		<testsuite name="taoResults">
-			<directory>../src/taoResults/test</directory>
+		<testsuite name="taoOutcomeUi">
+			<directory>../src/taoOutcomeUi/test</directory>
 		</testsuite>
 		<testsuite name="taoOutcomeRds">
 			<directory>../src/taoOutcomeRds/test</directory>
@@ -84,18 +75,6 @@
 		</testsuite>
 		<testsuite name="taoTestTaker">
 			<directory>../src/taoTestTaker/test</directory>
-		</testsuite>
-		<testsuite name="taoWfAdvTest">
-			<directory>../src/taoWfAdvTest/test</directory>
-		</testsuite>
-		<testsuite name="taoWfTest">
-			<directory>../src/taoWfTest/test</directory>
-		</testsuite>
-		<testsuite name="wfEngine">
-			<directory>../src/wfEngine/test</directory>
-		</testsuite>
-		<testsuite name="wfAuthoring">
-			<directory>../src/wfAuthoring/test</directory>
 		</testsuite>
 	</testsuites>
 
