@@ -13,18 +13,6 @@
 		<testsuite name="generis">
 			<directory>../src/generis/test/</directory>
 		</testsuite>
-		<!--
-		<testsuite name="generisHard">
-			<directory>../src/generis/test/</directory>
-		</testsuite>
-		
-		<testsuite name="ltiDeliveryProvider">
-			<directory>../src/ltiDeliveryProvider/test</directory>
-		</testsuite>
-		<testsuite name="ltiTestConsumer>
-			<directory>../src/ltiTestConsumer/test</directory>
-		</testsuite>
-		-->
 		<testsuite name="qtiItemPci">
 			<directory>../src/qtiItemPci/test</directory>
 		</testsuite>

@@ -143,7 +143,50 @@
 			<phingcall target="phpmd-naming"/>
 			<!--<phingcall target="phpmd-design"/>-->
 	</target>
+    
+    <target name="build-js">
+        <copy
+            file="${src.dir.resolved}/taoQtiItem/views/js/MathJaxFallback.js"
+            tofile="${src.dir.resolved}/taoQtiItem/views/js/mathjax/MathJax.js"
+            overwrite="true"
+        />
+        
+        <copy
+            file="resource/messages.json"
+            tofile="${src.dir.resolved}/tao/views/locales/en-US/messages.json"
+            overwrite="true"
+        />
+        <exec
+            command="npm --no-color install"
+            dir="${src.dir.resolved}/tao/views/build"
+            checkreturn="true"
+            logoutput="true"
+        />
 
+        <echo msg="Compile JS" />
+        <exec
+            command="npm run bundle"
+            dir="${src.dir.resolved}/tao/views/build"
+            checkreturn="true"
+            logoutput="true"
+        />
+
+        <echo msg="Check SASS runtime" />
+        <exec
+            command="sass --version"
+            checkreturn="true"
+            logoutput="true"
+        />
+
+        <echo msg="Compile SASS" />
+        <exec
+            command="npm run sass"
+            dir="${src.dir.resolved}/tao/views/build"
+            checkreturn="true"
+            logoutput="true"
+        />
+
+    </target>
 	<target name="phpcs">
 		<phpcodesniffer standard="conf/phpcs.xml">
 			<fileset dir="${src.dir.resolved}">
@@ -209,7 +252,7 @@
   	<target name="phpunit" depends="install">
   		<chmod  mode="0775" >
   		    <fileset dir="${src.dir.resolved}">
-  		        <include name="*" />
+  		        <include name="**/**" />
                 <include name="*/data/**" />
                 <include name="*/config/**" /> 
   		    </fileset>
