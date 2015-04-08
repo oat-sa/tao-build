@@ -38,7 +38,7 @@
 		<delete includeemptydirs="true">
 	    		<fileset dir="src/taoQtiItem/views/js/mathjax" includes="**/*" defaultexcludes="false"/>
 	  	</delete>
-		<zip destfile="build/tao-${buildNumber}.zip" basedir="src" />
+		<zip destfile="build/TAO_${buildNumber}.zip" basedir="src" />
 	</target>
 
 
