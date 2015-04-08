@@ -34,7 +34,7 @@
 		</composer>
 	</target>
 
-	<target name="package" description="Create Zip with the source, remove non GPL lib" depends="build-js">
+	<target name="package" description="Create Zip with the source, remove non GPL lib">
 		<delete includeemptydirs="true">
 	    		<fileset dir="src/taoQtiItem/views/js/mathjax" includes="**/*" defaultexcludes="false"/>
 	  	</delete>
