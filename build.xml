@@ -38,12 +38,9 @@
 		<delete includeemptydirs="true">
 	    		<fileset dir="src/taoQtiItem/views/js/mathjax" includes="**/*" defaultexcludes="false"/>
 	  	</delete>
-		<zip destfile="build/${release.source.name}.zip" basedir="src" />
+		<zip destfile="build/tao-${buildNumber}.zip" basedir="src" />
 	</target>
 
-  	<target name="build_number">
-  		<exec command="echo -n ${buildNumber} > ${src.dir.resolved}/build"/>
-  	</target>
 
-	<target name="build" depends="clone,package,build_number" description="Main task"/>
+	<target name="build" depends="clone,package" description="Main task"/>
 </project>
