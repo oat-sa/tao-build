@@ -14,23 +14,19 @@
 	</target>
 	<target name="prepare">
 		<mkdir dir="build/logs"/>
-		<mkdir dir="build/pdepend/"/>
-		<mkdir dir="build/coverage" />
 		<mkdir dir="src" />
 	</target>
 	<resolvepath propertyName="src.dir.resolved" file="src" />
 
-	<target name="clone" depends="clean,prepare"> 
-
+	<target name="clone" depends="clean,prepare">
 		<gitclone repository="git@github.com:oat-sa/package-tao.git" targetPath="src" />
-		<gitfetch 
-			repository="${src.dir.resolved}" 		
-			source="origin" 
-			refspec="3.0.0:3.0.0"
+		<gitfetch
+			repository="${src.dir.resolved}"
+			source="origin"
 		/>
 		<gitcheckout
     		repository="${src.dir.resolved}"
-    		branchname="3.0.0"
+    		branchname="paper-based-assessment"
     	/>
 		<composer command="install" composer="/usr/local/bin/composer">
 			 <arg value="--working-dir" />
@@ -38,232 +34,16 @@
 		</composer>
 	</target>
 
-
-	<target name="lint" >
-		<phplint haltonfailure="true">
-		  <fileset dir="${src.dir.resolved}">
-		    <include name="**/*.php"/>
-		    <exclude name="**/vendor/**" />
-		  </fileset>
-		</phplint>
-	</target>
-	<target name="phploc" description="Measure project size using PHPLOC">
-		<phploc reportType="csv" reportName="phploc" reportDirectory="build/logs">
-			<fileset dir="${src.dir.resolved}">
-			    <include name="**/*.php"/>
-			    <exclude name="**/vendor/**" />
-		  </fileset>
-		</phploc>
-	</target>
-	<target name="pdepend" description="Calculate software metrics using PHP_Depend">
-		<phpdepend>
-			<logger type="jdepend-xml" outfile="build/logs/jdepend.xml"/>
-			<logger type="jdepend-chart" outfile="build/pdepend/dependencies.svg" />
-			<logger type="overview-pyramid" outfile="build/pdepend/overview-pyramid.svg" />
-			<fileset dir="${src.dir.resolved}">
-			    <include name="**/*.php"/>
-			    <exclude name="**/vendor/**" />
-			    <exclude name="**/taoDevTools/models/templates/**" />
-			</fileset>
-		</phpdepend>
-	</target>
-
-	<target name="phpcpd" description="Find duplicate code using PHPCPD">
-		<phpcpd minLines="8">
-			<fileset dir="${src.dir.resolved}">
-			    <include name="**/*.php"/>
-			    <exclude name="**/vendor/**"/>
-			    <exclude name="**/locales/**"/>
-			    <exclude name="**/test/**"/>
-			    <exclude name="**/data/**"/>
-			    <exclude name="**/*.conf.php"/>
-			</fileset>
-		    <formatter type="pmd" outfile="build/logs/cpd.xml"/>
-		</phpcpd>
-	</target>
-
-	<target name="phpmd-design">
-		<phpmd rulesets="design">
-			<fileset dir="${src.dir.resolved}">
-			    <include name="**/*.php"/>
-			    <exclude name="**/vendor/**" />
-			    <exclude name="**/locales/**"/>
-			    <exclude name="**/test/**"/>
-			    <exclude name="**/lib/**"/>
-			</fileset>
-			<formatter type="xml" outfile="build/logs/pmd-design.xml"/>
-
-		</phpmd>
-	</target>
-
-	<target name="phpmd-naming">
-		<phpmd rulesets="naming">
-			<fileset dir="${src.dir.resolved}">
-			    <include name="**/*.php"/>
-			    <exclude name="**/vendor/**" />
-			    <exclude name="**/locales/**"/>
-			    <exclude name="**/test/**"/>
-			    <exclude name="**/lib/**"/>
-			</fileset>
-			<formatter type="xml" outfile="build/logs/pmd-naming.xml"/>
-
-		</phpmd>
-	</target>
-
-	<target name="phpmd-codesize">
-		<phpmd rulesets="codesize">
-			<fileset dir="${src.dir.resolved}">
-			    <include name="**/*.php"/>
-			    <exclude name="**/vendor/**" />
-			    <exclude name="**/locales/**"/>
-			    <exclude name="**/test/**"/>
-			    <exclude name="**/lib/**"/>
-			</fileset>
-			<formatter type="xml" outfile="build/logs/pmd-codesize.xml"/>
-
-		</phpmd>
-	</target>
-
-	<target name="phpmd-unusedcode">
-		<phpmd rulesets="unusedcode">
-			<fileset dir="${src.dir.resolved}">
-			    <include name="**/*.php"/>
-			    <exclude name="**/vendor/**" />
-			    <exclude name="**/locales/**"/>
-			    <exclude name="**/test/**"/>
-			    <exclude name="**/lib/**"/>
-			</fileset>
-			<formatter type="xml" outfile="build/logs/pmd-unusedcode.xml"/>
-
-		</phpmd>
-	</target>
-	<target name="phpmd">
-			<phingcall target="phpmd-unusedcode"/>
-			<phingcall target="phpmd-codesize"/>
-			<phingcall target="phpmd-naming"/>
-			<!--<phingcall target="phpmd-design"/>-->
-	</target>
-    
-    <target name="build-js">
-        <copy
-            file="${src.dir.resolved}/taoQtiItem/views/js/MathJaxFallback.js"
-            tofile="${src.dir.resolved}/taoQtiItem/views/js/mathjax/MathJax.js"
-            overwrite="true"
-        />
-        
-        <copy
-            file="resource/messages.json"
-            tofile="${src.dir.resolved}/tao/views/locales/en-US/messages.json"
-            overwrite="true"
-        />
-        <exec
-            command="npm --no-color install"
-            dir="${src.dir.resolved}/tao/views/build"
-            checkreturn="true"
-            logoutput="true"
-        />
-
-        <echo msg="Compile JS" />
-        <exec
-            command="npm run bundle"
-            dir="${src.dir.resolved}/tao/views/build"
-            checkreturn="true"
-            logoutput="true"
-        />
-
-        <echo msg="Check SASS runtime" />
-        <exec
-            command="sass --version"
-            checkreturn="true"
-            logoutput="true"
-        />
-
-        <echo msg="Compile SASS" />
-        <exec
-            command="npm run sass"
-            dir="${src.dir.resolved}/tao/views/build"
-            checkreturn="true"
-            logoutput="true"
-        />
-
-    </target>
-	<target name="phpcs">
-		<phpcodesniffer standard="conf/phpcs.xml">
-			<fileset dir="${src.dir.resolved}">
-			    <include name="**/*.php"/>
-			    <exclude name="**/vendor/**" />
-			    <exclude name="**/locales/**"/>
-			    <exclude name="**/test/**"/>
-			    <exclude name="**/lib/**"/>
-			</fileset>
-			<formatter type="checkstyle" outfile="build/logs/checkstyle.xml"/>
-		</phpcodesniffer>
-	</target>
-	<target name="tools-parallel">
-		<parallel threadCount="2">
-			<phingcall target="pdepend"/>
-			<phingcall target="phpcpd"/>
-			<phingcall target="phpcs"/>
-			<phingcall target="phploc" />
-			<phingcall target="phpmd"/>
-		</parallel>
-	</target>
-
-	<target name="package" description="Create Zip with the source, remove non GPL lib">
+	<target name="package" description="Create Zip with the source, remove non GPL lib" depends="build-js">
 		<delete includeemptydirs="true">
 	    		<fileset dir="src/taoQtiItem/views/js/mathjax" includes="**/*" defaultexcludes="false"/>
 	  	</delete>
 		<zip destfile="build/${release.source.name}.zip" basedir="src" />
 	</target>
 
-	<includepath classpath="task" />
-	<taskdef name="taoinstall" classname="InstallTaoTask" />
-    <typedef name="taoDbConfig" classname="TaoDbConfig" />
-    <typedef name="generisConfig" classname="GenerisConfig" />
-    <typedef name="taoConfig" classname="TaoConfig" />
-
-	<target name="install" description="install tao">
-
-		<property name="extensions_list" value="funcAcl,generis,ltiDeliveryProvider,qtiItemPci,tao,taoCe,taoDelivery,taoGroups,taoItems,taoLti,taoLtiBasicOutcome,taoOpenWebItem,taoQtiItem,taoQtiTest,taoOutcomeRds,taoOutcomeUi,taoResultServer,taoSimpleDelivery,taoTestTaker,taoTests,taoTestLinear" 
-		/>
-		<taoinstall taoPath="${src.dir.resolved}" >
-	      	<taoConfig 	
-	      		login="${user.login}"
-	      		pass="${user.pass}">
-	      	<taoDbConfig 
-	      		dbDriver="${db.driver}" 
-	      		dbHost="${db.host}"
-	      		dbUser="${db.user}"
-	      		dbPass="${db.pass}"
-	      		dbName="${db.name}"
-	      	/>
-	      	<generisConfig       		
-	      		instanceName="${module.name}"
-	      		moduleUrl="${module.url}"
-	      		moduleNs="${module.namespace}"
-	      		moduleMode="${module.mode}"
-	      		dataPath="${src.dir.resolved}/data/"
-	      		extensions="${extensions_list}"
-	      	/>
-	      	</taoConfig>
-      	</taoinstall>
-  	</target>
-
-  	<target name="phpunit" depends="install">
-  		<chmod  mode="0775" >
-  		    <fileset dir="${src.dir.resolved}">
-  		        <include name="**/**" />
-                <include name="*/data/**" />
-                <include name="*/config/**" /> 
-  		    </fileset>
-  		</chmod>  
-        
-
-  		<exec command="~/.composer/vendor/bin/phpunit -c conf/phpunit_mysql.xml" logoutput="true" passthru="true" />
-  	</target>
-
   	<target name="build_number">
   		<exec command="echo -n ${buildNumber} > ${src.dir.resolved}/build"/>
   	</target>
-	<target name="build" depends="clone,package,tools-parallel,install,phpunit,build_number" description="Main task"/>
+
+	<target name="build" depends="clone,package,build_number" description="Main task"/>
 </project>
