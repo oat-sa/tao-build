@@ -259,7 +259,7 @@
   		</chmod>  
         
 
-  		<exec command="~/.composer/vendor/bin/phpunit -c conf/phpunit_mysql.xml" logoutput="true" passthru="true" />
+  		<exec command="${src.dir.resolved}/vendor/bin/phpunit -c conf/phpunit_mysql.xml" logoutput="true" passthru="true" />
   	</target>
 
   	<target name="build_number">
