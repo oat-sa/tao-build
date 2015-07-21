@@ -1,0 +1,12 @@
+{
+	"name" : "oat-sa/tao-build",
+	"description" : "Tools to build and manage TAO installation",
+		"authors" : [
+		{
+			"name" : "Lionel Lecaque",
+			"role" : "Developer"
+		}
+	],
+	"homepage" : "http://www.taotesting.com",
+	"license" : "GPL-2.0"
+}
