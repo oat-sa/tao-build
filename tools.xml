@@ -122,13 +122,17 @@
 						<echo msg="tag ext ${extension} with version v${version}" />
 						<gittag repository="${tao.root}/${extension}" list="true" outputProperty="tags" pattern="v${version}" />
 						<if>
-							<equals arg1="${tags}" arg2="v${version}" />
+							<equals arg1="${tags}" arg2="" />
 							<then>
 								<echo message="${tags}" />
 								<gittag repository="${tao.root}/${extension}" name="v${version}" message="Automatic creation of tag ${version} at ${TSTAMP}" />
+								<gitpush
+				        			repository="${tao.root}/${extension}"
+				        			tags="true"
+				        			destination="origin" />
 							</then>
 							<else>
-								<echo level="info" msg="tag v${version} already exists skip" />
+								<echo level="info" msg="tag v${version} already exists skip ${tags}" />
 							</else>
 
 						</if>
