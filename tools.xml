@@ -120,9 +120,52 @@
 	</target>
 
 	<target name="install_mathjax" description="Install 3rd part lib mathjax"> 
-
 		<exec command="resource/MathJax_Install_TAO_3x.sh ${basedir.resolved}" passthru="true" />
+	</target>
 
+	<target name="tag_extension">
+		
+		<if>
+  			<isset property="extension"/>
+ 			<then>
+ 				<includepath classpath="task/tao/extension" />
+    			<taskdef name="extensionVersion" classname="ExtensionTask" />
+    			
+			 	<extensionVersion extension="${extension}" taoPath="${tao.root}" versionprop='version' />
+   
+    			<if>
+  					<isset property="version"/>
+  					<then>
+  						<echo msg="tag ext ${extension} with version v${version}" />
+						<gittag 
+							repository="${tao.root}/${extension}" 
+							list="true"
+    						outputProperty="tags"
+    						pattern="v${version}"/>
+    					<if>
+    						<equals arg1="${tags}" arg2="v${version}" />
+    						<then>
+	    					<echo message="${tags}" />
+	  						<gittag 
+								repository="${tao.root}/${extension}" 
+								name="v${version}" 
+								message="Automatic creation of tag ${version} at ${TSTAMP}"/>
+								</then>
+								<else>
+									<echo level="info" msg="tag v${version} already exists skip" />
+								</else>
+							
+						</if>
+					</then>
+					<else>
+						<echo level="error" msg="version not set" />
+					</else>
+				</if>
+			</then>
+	  		<else>
+	  			<echo level="error" msg="error try to call tag_one alone" />
+	  		</else>
+	  	</if>
 	</target>
 
 </project>
