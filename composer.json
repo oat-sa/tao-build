@@ -11,7 +11,9 @@
 	"license" : "GPL-2.0",
 	         
 	"require" : {
-		"phing/phing": "2.*"
+		"phing/phing": "2.*",
+		"pear/versioncontrol_git" : "dev-master"
+
 		
 	}
 }
