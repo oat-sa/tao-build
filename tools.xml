@@ -1,6 +1,6 @@
 <project name="TAO Tools" default="help" basedir=".">
 
-	<property file="tools.properties" />
+	<property file="${tao.root}/config/ci.properties" />
 	<resolvepath propertyName="basedir.resolved" file="${tao.root}" />
 	<tstamp>
 		<format property="TSTAMP" pattern="%Y%m%d_%H%M%S" />
@@ -106,7 +106,7 @@
 		<exec command="resource/MathJax_Install_TAO_3x.sh ${basedir.resolved}" passthru="true" />
 	</target>
 
-	<target name="tag_extension">
+	<target name="tag_one">
 
 		<if>
 			<isset property="extension" />
@@ -120,6 +120,7 @@
 					<isset property="version" />
 					<then>
 						<echo msg="tag ext ${extension} with version v${version}" />
+						<gitfetch repository="${tao.root}/${extension}" all="true" />
 						<gittag repository="${tao.root}/${extension}" list="true" outputProperty="tags" pattern="v${version}" />
 						<if>
 							<equals arg1="${tags}" arg2="" />
@@ -146,6 +147,11 @@
 				<echo level="error" msg="error try to call tag_one alone" />
 			</else>
 		</if>
+	</target>
+
+
+	<target name="tag_extensions">
+		<foreach list="${extensions.list}" param="extension" target="tag_one" />
 	</target>
 
 </project>
