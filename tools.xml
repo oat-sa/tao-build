@@ -1,6 +1,6 @@
 <project name="TAO Tools" default="help" basedir=".">
 	<fail unless="tao.root" message="missing property tao.root use -Dtao.root= " />
-
+	<resolvepath propertyName="builddir.resolved" file="./vendor/oat-sa/tao-build" />
 	<property file="${tao.root}/config/ci.properties" />
 	<resolvepath propertyName="basedir.resolved" file="${tao.root}" />
 	<tstamp>
@@ -12,7 +12,7 @@
 		<exec executable="${phing.bin}" passthru="true">
 			<arg value="-l" />
 			<arg value="-f" />
-			<arg value="tools.xml" />
+			<arg value="${builddir.resolved}/tools.xml" />
 			<arg value="-Dtao.root=${tao.root}" />
 
 		</exec>
@@ -155,7 +155,7 @@
 	</target>
 
 
-	<target name="tag_extensions">
+	<target name="tag_extensions" description="Tag any extension according to manigest version">
 		<foreach list="${extensions.list}" param="extension" target="tag_one" />
 	</target>
 
