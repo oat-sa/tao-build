@@ -9,7 +9,9 @@
 	],
 	"homepage" : "http://www.taotesting.com",
 	"license" : "GPL-2.0",
-	         
+	"bin" : [
+		"bin/taoTools.sh"
+	],         
 	"require" : {
 		"phing/phing": "2.*",
 		"pear/versioncontrol_git" : "dev-master"

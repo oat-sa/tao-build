@@ -1,4 +1,5 @@
 <project name="TAO Tools" default="help" basedir=".">
+	<fail unless="tao.root" message="missing property tao.root use -Dtao.root= " />
 
 	<property file="${tao.root}/config/ci.properties" />
 	<resolvepath propertyName="basedir.resolved" file="${tao.root}" />
@@ -10,6 +11,10 @@
 		<echo msg="Available Command : " />
 		<exec executable="${phing.bin}" passthru="true">
 			<arg value="-l" />
+			<arg value="-f" />
+			<arg value="tools.xml" />
+			<arg value="-Dtao.root=${tao.root}" />
+
 		</exec>
 	</target>
 
@@ -44,8 +49,8 @@
 
 
 	<target name="empty_cache" description="Empty application cahce">
-		<delete dir="./data/generis/cache/" includeemptydirs="true" />
-		<mkdir dir="./data/generis/cache" />
+		<delete dir="${tao.root}/data/generis/cache/" includeemptydirs="true" />
+		<mkdir dir="${tao.root}/data/generis/cache" />
 	</target>
 
 	<target name="enable_maintenance" description="Enable Maintenance Mode">
@@ -54,7 +59,7 @@
 			<arg value="-i" />
 			<arg value="-r" />
 			<arg value="s/^define\('SYS_READY', .*\);/define('SYS_READY', false);/g" />
-			<arg path="config/generis.conf.php" />
+			<arg path="${tao.root}/config/generis.conf.php" />
 		</exec>
 	</target>
 
@@ -64,7 +69,7 @@
 			<arg value="-i" />
 			<arg value="-r" />
 			<arg value="s/^define\('SYS_READY', .*\);/define('SYS_READY', true);/g" />
-			<arg path="config/generis.conf.php" />
+			<arg path="${tao.root}/config/generis.conf.php" />
 		</exec>
 	</target>
 
@@ -85,7 +90,7 @@
 			<arg path="tao/scripts/taoUpdate.php" />
 		</exec>
 	</target>
-
+	<!--
 	<target name="taoinstall" description="Install TAO">
 		<includepath classpath="build/tasks" />
 		<taskdef name="taoinstall" classname="InstallTaoTask" />
@@ -105,7 +110,7 @@
 	<target name="install_mathjax" description="Install 3rd part lib mathjax">
 		<exec command="resource/MathJax_Install_TAO_3x.sh ${basedir.resolved}" passthru="true" />
 	</target>
-
+	-->
 	<target name="tag_one">
 
 		<if>
