@@ -224,7 +224,7 @@
 
 	<target name="install" description="install tao">
 
-		<property name="extensions_list" value="funcAcl,generis,ltiDeliveryProvider,qtiItemPci,tao,taoCe,taoDelivery,taoGroups,taoItems,taoLti,taoLtiBasicOutcome,taoOpenWebItem,taoQtiItem,taoQtiTest,taoOutcomeRds,taoOutcomeUi,taoResultServer,taoSimpleDelivery,taoTestTaker,taoTests,taoTestLinear" 
+		<property name="extensions_list" value="funcAcl,generis,ltiDeliveryProvider,qtiItemPci,tao,taoCe,taoDelivery,taoGroups,taoItems,taoLti,taoLtiBasicOutcome,taoOpenWebItem,taoQtiItem,taoQtiTest,taoOutcomeRds,taoOutcomeUi,taoResultServer,taoTestTaker,taoTests,taoTestLinear" 
 		/>
 		<taoinstall taoPath="${src.dir.resolved}" >
 	      	<taoConfig 	
