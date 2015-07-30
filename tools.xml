@@ -1,19 +1,40 @@
-<project name="TAO Tools" default="help" basedir=".">
-	<fail unless="tao.root" message="missing property tao.root use -Dtao.root= " />
-	<resolvepath propertyName="builddir.resolved" file="./vendor/oat-sa/tao-build" />
-	<property file="${tao.root}/config/ci.properties" />
-	<resolvepath propertyName="basedir.resolved" file="${tao.root}" />
-	<tstamp>
-		<format property="TSTAMP" pattern="%Y%m%d_%H%M%S" />
-	</tstamp>
+<project name="TAO Tools" default="help">
+
+	<target name="init">
+		<fail unless="tao.root" message="missing property tao.root use -Dtao.root= " />
+		<available file="${tao.root}/config/phing.properties" property="check.installed"/>
+		<if>
+			<equals arg1="${check.installed}" arg2="true"/>
+			<then>
+				<echo level="info" msg="Already setup" />
+			</then>
+			<else>
+				<resolvepath propertyName="build.dir" file="${tao.root}/vendor/oat-sa/tao-build" />
+				<property name="vendor.bin" value="${tao.root}/vendor/bin" />
+				<property name="composer.bin" value="composer" />
+				<propertyprompt propertyName="composer.bin" defaultValue="composer"
+        			promptText="Enter your composer binary location" />
+
+				<exportproperties 
+					targetfile="${tao.root}/config/phing.properties"
+					disallowedPropertyPrefixes="host.,phing.,os.,php.,line.,env.,user.,			application.,project." />		
+			</else>
+		</if>
+	</target>
+
+	<target name="clean">
+		<delete file="${tao.root}/config/phing.properties" />
+	</target>
+
+	<property file="${tao.root}/config/phing.properties" />
+
 
 	<target name="help">
 		<echo msg="Available Command : " />
-		<exec executable="${phing.bin}" passthru="true">
+		<exec executable="${vendor.bin}/phing" passthru="true">
 			<arg value="-l" />
 			<arg value="-f" />
-			<arg value="${builddir.resolved}/tools.xml" />
-			<arg value="-Dtao.root=${tao.root}" />
+			<arg value="${build.dir}/tools.xml" />
 
 		</exec>
 	</target>
@@ -23,7 +44,9 @@
 	</target>
 
 	<target name="backup_db" description="Create a DB backup">
-
+		<tstamp>
+			<format property="TSTAMP" pattern="%Y%m%d_%H%M%S" />
+		</tstamp>
 		<echo msg="Backup db ${db.name}" />
 		<mkdir dir="${backup.folder}" />
 		<exec command="mysqldump -u${db.user} -p${db.pass} ${db.name} > ${backup.folder}/${db.name}${TSTAMP}.sql" />
@@ -36,6 +59,9 @@
 	</target>
 
 	<target name="backup_data" description="Create backup folder data and config">
+		<tstamp>
+			<format property="TSTAMP" pattern="%Y%m%d_%H%M%S" />
+		</tstamp>
 		<echo msg="Backup folder config and data" />
 		<mkdir dir="${backup.folder}" />
 		<tar destfile="${backup.folder}/file_${TSTAMP}.tar.bz2" compression="bzip2">
@@ -112,7 +138,9 @@
 	</target>
 	-->
 	<target name="tag_one">
-
+		<tstamp>
+			<format property="TSTAMP" pattern="%Y%m%d_%H%M%S" />
+		</tstamp>
 		<if>
 			<isset property="extension" />
 			<then>
