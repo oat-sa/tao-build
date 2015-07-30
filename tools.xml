@@ -108,22 +108,32 @@
 	<target name="composer_update" description="Update extensions and 3rd part lib using composer">
 		<composer command="update" composer="${composer.bin}" >
 			<arg value="--working-dir" />
-			<arg path="${tao.root}" />>
+			<arg path="${tao.root}" />
 		</composer>
 	</target>
 
 	<target name="composer_install" description="Install extensions and 3rd part lib using composer">
-		<composer command="install" composer="${composer.bin}">
+		<composer command="install" composer="${composer.bin}" >
 			<arg value="--working-dir" />
 			<arg path="${tao.root}" />
 		</composer>
 	</target>
 
-	<target name="extension_update" description="Update TAO extensions installation">
+	<target name="extension_update" >
 		<exec executable="php" passthru="true">
 			<arg path="${tao.root}/tao/scripts/taoUpdate.php" />
 		</exec>
 	</target>
+
+	<target name="platform_update" description="Update TAO extensions installation">
+		<phingcall target="enable_maintenance" />
+		<phingcall target="backup_data" />
+		<phingcall target="composer_update" />
+		<phingcall target="extension_update" />
+		<phingcall target="disable_maintenance" />
+		
+	</target>
+
 	<!--
 	<target name="taoinstall" description="Install TAO">
 		<includepath classpath="build/tasks" />
