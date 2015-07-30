@@ -14,6 +14,8 @@
 				<property name="composer.bin" value="composer" />
 				<propertyprompt propertyName="composer.bin" defaultValue="composer"
         			promptText="Enter your composer binary location" />
+				<propertyprompt propertyName="backup.folder" defaultValue="${tao.root}/backup"
+        			promptText="Enter your backup folder" />
 
 				<exportproperties 
 					targetfile="${tao.root}/config/phing.properties"
@@ -22,12 +24,13 @@
 		</if>
 	</target>
 
+	<property file="${tao.root}/config/phing.properties" />
+
 	<target name="clean">
 		<delete file="${tao.root}/config/phing.properties" />
 	</target>
 
-	<property file="${tao.root}/config/phing.properties" />
-
+	
 
 	<target name="help">
 		<echo msg="Available Command : " />
@@ -42,6 +45,8 @@
 	<target name="prepare">
 		<gitclone repository="git@github.com:oat-sa/phing-task-tao.git" targetPath="./build/tasks" />
 	</target>
+
+
 
 	<target name="backup_db" description="Create a DB backup">
 		<tstamp>
@@ -65,7 +70,7 @@
 		<echo msg="Backup folder config and data" />
 		<mkdir dir="${backup.folder}" />
 		<tar destfile="${backup.folder}/file_${TSTAMP}.tar.bz2" compression="bzip2">
-			<fileset dir=".">
+			<fileset dir="${tao.root}">
 				<include name="config/**" />
 				<include name="data/**" />
 				<exclude name="data/generis/cache/**" />
@@ -101,19 +106,22 @@
 
 
 	<target name="composer_update" description="Update extensions and 3rd part lib using composer">
-		<composer command="update" composer="${composer.bin}" />
+		<composer command="update" composer="${composer.bin}" >
+			<arg value="--working-dir" />
+			<arg path="${tao.root}" />>
+		</composer>
 	</target>
 
 	<target name="composer_install" description="Install extensions and 3rd part lib using composer">
 		<composer command="install" composer="${composer.bin}">
 			<arg value="--working-dir" />
-			<arg path="${basedir.resolved}" />
+			<arg path="${tao.root}" />
 		</composer>
 	</target>
 
 	<target name="extension_update" description="Update TAO extensions installation">
 		<exec executable="php" passthru="true">
-			<arg path="tao/scripts/taoUpdate.php" />
+			<arg path="${tao.root}/tao/scripts/taoUpdate.php" />
 		</exec>
 	</target>
 	<!--
