@@ -127,7 +127,6 @@
 
 	<target name="platform_update" description="Update TAO extensions installation">
 		<phingcall target="enable_maintenance" />
-		<phingcall target="backup_data" />
 		<phingcall target="composer_update" />
 		<phingcall target="extension_update" />
 		<phingcall target="disable_maintenance" />
