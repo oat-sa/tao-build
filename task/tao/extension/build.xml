@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+
+<project name="test" basedir="." default="test.extension">
+    <includepath classpath="." />
+    <taskdef name="extensionVersion" classname="ExtensionTask" />
+    <target name="test.extension">
+      <extensionVersion extension="${extension}" taoPath="${tao.root}" versionprop='outputprop' />
+    </target>
+</project>
