@@ -162,7 +162,7 @@
 			<isset property="extension" />
 			<then>
 				<includepath classpath="task/tao/extension" />
-				<taskdef name="extensionVersion" classname="ExtensionTask" />
+				<taskdef name="extensionVersion" classname="ExtensionVersionTask" />
 
 				<extensionVersion extension="${extension}" taoPath="${tao.root}" versionprop='version' />
 
@@ -202,6 +202,12 @@
 
 	<target name="tag_extensions" description="Tag any extension according to manigest version">
 		<foreach list="${extensions.list}" param="extension" target="tag_one" />
+	</target>
+
+	<target name="show_available_extensions">
+		<includepath classpath="task/tao/extension" />
+		<taskdef name="extensionsList" classname="ExtensionsListTask" />
+		<extensionsList taoPath="${tao.root}" />
 	</target>
 
 </project>
