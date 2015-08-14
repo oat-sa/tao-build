@@ -210,4 +210,29 @@
 		<extensionsList taoPath="${tao.root}" />
 	</target>
 
+	<target name="prepare_develop_PR">
+		<tstamp>
+			<format property="TSTAMP" pattern="%Y%m%d_%H%M%S" />
+		</tstamp>
+		<if>
+			<isset property="extension" />
+			<then>
+
+				<echo msg="Merge ext ${extension} with version v${version}" />
+				<gitcheckout
+		    		repository="${tao.root}/${extension}"
+		    		branchname="develop" />
+		    	<gitpull
+				    repository="${tao.root}/${extension}"
+				    source="origin" refspec="develop" />
+				<exec  command='hub pull-request develop -m "Automactic merge develop into master" - b master' passthru="true" dir="${tao.root}/${extension}/"/> 
+
+
+			</then>
+			<else>
+				<echo level="error" msg="error try to call prepare_develop_PR  with no extension" />
+			</else>
+		</if>
+	</target>
+
 </project>
