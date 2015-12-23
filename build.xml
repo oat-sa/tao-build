@@ -26,11 +26,11 @@
 		<gitfetch 
 			repository="${src.dir.resolved}" 		
 			source="origin" 
-			refspec="3.0.0:3.0.0"
+			refspec="develop:develop"
 		/>
 		<gitcheckout
     		repository="${src.dir.resolved}"
-    		branchname="3.0.0"
+    		branchname="develop"
     	/>
 		<composer command="install" composer="/usr/local/bin/composer">
 			 <arg value="--working-dir" />

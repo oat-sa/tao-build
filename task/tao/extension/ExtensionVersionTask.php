@@ -2,7 +2,7 @@
 
 require_once "phing/Task.php";
 
-class ExtensionTask extends Task 
+class ExtensionVersionTask extends Task 
 {
 
     private $extension = null;
@@ -30,7 +30,6 @@ class ExtensionTask extends Task
     public function main() 
     {
         if(is_null($this->extension)){
-           var_dump($this->extension);
 			throw new Exception("Extension is missing");
 		}
 		if(is_null($this->taoPath)){
