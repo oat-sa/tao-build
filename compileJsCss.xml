@@ -9,17 +9,19 @@
     <!--taoQtiItem retired for debug-->
     <property name="list" value="tao,taoBackOffice,taoCe,taoDacSimple,taoDelivery,
                                  taoDevTools,taoFrontOffice,taoGroups,taoItems,taoLti,
-                                 taoLtiBasicOutcome,taoOpenWebItem,taoOutcomeRds,taoOutcomeUi,
-                                 taoQtiItem,taoQtiTest,taoResultServer,taoTestLinear,taoTests,taoTestTaker,taoClientDiagnostic,taoProctoring"/>
-    <foreach list="${list}" param="extension" target="extensionTarget" delimiter=","/>
+                                 taoLtiBasicOutcome,taoOutcomeRds,taoOutcomeUi,
+                                 taoQtiItem,taoQtiTest,taoResultServer,taoTestLinear,taoTests,taoTestTaker,taoClientDiagnostic,taoProctoring"/> 
+    <foreach list="${list}" param="extension" target="extensionTarget" delimiter=","/> 
   </target>
 
 
   <target name="extensionTarget">
 
-    <exec command="git status -s | grep -E '**/*.js$|**/*.css$'" dir="${tao.root}/${extension}" outputProperty="files"/>
-    <echo msg="${extension}"/>
     <exec command="${tao.root}/vendor/oat-sa/tao-build/bin/updateCompileLg.sh ${tao.root} ${extension}" passthru="true" dir="${tao.root}" />
+
+    <exec command="git status -s | grep -E '**/*.js$|**/*.css$|**/*.css.map$|**/*.po$|**/*.lang.php$'" dir="${tao.root}/${extension}" outputProperty="files"/>
+    <echo msg="${extension}"/>
+
     <echo msg="${files}"/>
     <if>
       <not>
@@ -39,7 +41,12 @@
             <exec command="find . -name *.js -type f -exec git add {} \;" dir="${tao.root}/${extension}" passthru="true" />
             <exec command="find . -name *.css.map -type f -exec git add {} \;" dir="${tao.root}/${extension}" passthru="true" />
             <exec command="find . -name message.json -type f -exec git add {} \;" dir="${tao.root}/${extension}" passthru="true" />
-           <exec command='git commit -m "Automatic complitation of Js files"' dir="${tao.root}/${extension}" passthru="true" />
+
+           <exec command='git commit -m "Automatic complitation of Js files and Language"' dir="${tao.root}/${extension}" passthru="true" />
+           <exec command="git push origin compilation_branch" dir="${tao.root}/${extension}" passthru="true" />
+
+           <exec command='/home/lionel/bin/hub pull-request compilation_branch -m "Automactic compilation push" -b develop' dir="${tao.root}/${extension}" passthru="true" /> 
+
           </then>
           <elseif>
             <!--If you don't want to-->

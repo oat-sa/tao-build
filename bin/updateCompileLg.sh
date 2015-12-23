@@ -15,13 +15,12 @@ fi
 DATE=`date +%Y-%m-%d`
 PWD=$(pwd)
 echo $PWD
-cd $PWD/$EXT
+cd $TAOROOT/$EXT
 git branch -D compilation_branch
 git checkout -b compilation_branch
 #git fetch origin spanish_translation:spanish_translation
 #git checkout spanish_translation
-php $TAOROOT/tao/scripts/taoTranslate.php -v -a updateAll -u admin -p admin -e $EXT
-php $TAOROOT/tao/scripts/taoTranslate.php -v -a compileAll -u admin -p admin -e $EXT
+php $TAOROOT/tao/scripts/taoTranslate.php -a updateAll -u admin -p admin -e $EXT
+php $TAOROOT/tao/scripts/taoTranslate.php -a compileAll -u admin -p admin -e $EXT
 git add locales
-git commit -m "Automatic commit translation ${DATE}"
 cd $PWD
