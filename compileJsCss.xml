@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+
+<project name="compileJsCssInEachTaoExtensions" default="foreachTaoExtensions">
+
+
+<fail unless="tao.root" message="missing property tao.root use -Dtao.root= " />
+<property file="${tao.root}/config/phing.properties" />
+  <target name="foreachTaoExtensions" depends="build-js">
+    <!--taoQtiItem retired for debug-->
+    <property name="list" value="tao,taoBackOffice,taoCe,taoDacSimple,taoDelivery,
+                                 taoDevTools,taoFrontOffice,taoGroups,taoItems,taoLti,
+                                 taoLtiBasicOutcome,taoOutcomeRds,taoOutcomeUi,
+                                 taoQtiItem,taoQtiTest,taoResultServer,taoTestLinear,taoTests,taoTestTaker,taoClientDiagnostic,taoProctoring"/> 
+    <foreach list="${list}" param="extension" target="extensionTarget" delimiter=","/> 
+  </target>
+
+
+  <target name="extensionTarget">
+
+    <exec command="${tao.root}/vendor/oat-sa/tao-build/bin/updateCompileLg.sh ${tao.root} ${extension}" passthru="true" dir="${tao.root}" />
+
+    <exec command="git status -s | grep -E '**/*.js$|**/*.css$|**/*.css.map$|**/*.po$|**/*.lang.php$'" dir="${tao.root}/${extension}" outputProperty="files"/>
+    <echo msg="${extension}"/>
+
+    <echo msg="${files}"/>
+    <if>
+      <not>
+        <equals arg1="${files}" arg2=""/>
+      </not>
+      <then>
+        <propertyprompt propertyName="answer" promptText="Do you want to add/commit/push those files ?"/>
+        <if>
+          <!--If you want to git add/commit/push-->
+          <equals arg1="${answer}" arg2="y"/>
+          <then>
+            <echo msg="you said yes"/>
+            <echo msg="${tao.root}/${extension}"/>
+
+
+            <exec command="find . -name *.css -type f -exec git add {} \;" dir="${tao.root}/${extension}" passthru="true" />
+            <exec command="find . -name *.js -type f -exec git add {} \;" dir="${tao.root}/${extension}" passthru="true" />
+            <exec command="find . -name *.css.map -type f -exec git add {} \;" dir="${tao.root}/${extension}" passthru="true" />
+            <exec command="find . -name message.json -type f -exec git add {} \;" dir="${tao.root}/${extension}" passthru="true" />
+
+           <exec command='git commit -m "Automatic complitation of Js files and Language"' dir="${tao.root}/${extension}" passthru="true" />
+           <exec command="git push origin compilation_branch" dir="${tao.root}/${extension}" passthru="true" />
+
+           <exec command='/home/lionel/bin/hub pull-request compilation_branch -m "Automactic compilation push" -b develop' dir="${tao.root}/${extension}" passthru="true" /> 
+
+          </then>
+          <elseif>
+            <!--If you don't want to-->
+            <equals arg1="${answer}" arg2="n"/>
+            <then>
+              <echo msg="you said no"/>
+            </then>
+          </elseif>
+        </if>
+        <echo msg="${answer}"/>
+      </then>
+      <else>
+        <echo msg="Skipping, next"/>
+      </else>
+    </if>
+  </target>
+  
+  <target name="build-js">
+    <copy file="${tao.root}/taoQtiItem/views/js/MathJaxFallback.js"
+      tofile="${tao.root}/taoQtiItem/views/js/mathjax/MathJax.js" overwrite="true"/>
+    <!-- <copy file="resource/messages.json"
+      tofile="tao/views/locales/en-US/messages.json" overwrite="true"/> -->
+
+    <exec command="npm ()no-color install"
+      dir="${tao.root}/tao/views/build"
+      checkreturn="true" logoutput="true"/>
+
+    <echo msg="Compile JS"/>
+      <exec command="npm run bundleall"
+        dir="${tao.root}/tao/views/build"
+        checkreturn="true" logoutput="true"/>
+
+    <echo msg="Check SASS runtime"/>
+      <exec command="sass ()version"
+        checkreturn="true" logoutput="true"/>
+
+    <echo msg="Compile SASS"/>
+      <exec command="npm run sass"
+        dir="${tao.root}/tao/views/build"
+        checkreturn="true" logoutput="true"/>
+  </target>
+
+</project>
