@@ -2,7 +2,7 @@
 
 <project name="test" basedir="." default="test.extension">
     <includepath classpath="." />
-    <taskdef name="extensionVersion" classname="ExtensionTask" />
+    <taskdef name="extensionVersion" classname="ExtensionVersionTask" />
     <target name="test.extension">
       <extensionVersion extension="${extension}" taoPath="${tao.root}" versionprop='outputprop' />
     </target>

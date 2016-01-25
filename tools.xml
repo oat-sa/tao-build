@@ -154,6 +154,52 @@
 		<exec command="resource/MathJax_Install_TAO_3x.sh ${basedir.resolved}" passthru="true" />
 	</target>
 	-->
+	
+	
+	<target name="crete_release_one">
+		<if>
+			<isset property="extension" />
+			<then>
+				<gitcheckout
+                	repository="${tao.root}/${extension}"
+                	branchname="develop" />
+                	
+				<includepath classpath="task/tao/extension" />
+				<taskdef name="extensionVersion" classname="ExtensionVersionTask" />
+
+				<extensionVersion extension="${extension}" taoPath="${tao.root}" versionprop='version' />
+				<gitfetch repository="${tao.root}/${extension}" all="true" />
+				<gittag repository="${tao.root}/${extension}" list="true" outputProperty="tags" pattern="v${version}" />
+				<if>
+					<equals arg1="${tags}" arg2="" />
+					<then>
+						<echo message="${tags}" />
+						<gitcheckout
+                			repository="${tao.root}/${extension}"
+                			branchname="develop" />
+
+						<gitcheckout
+                			repository="${tao.root}/${extension}"
+                			branchname="release-${version}" create="true" />
+                		<gitpush
+				        	repository="${tao.root}/${extension}"
+				        	refspec="release-${version}:release-${version}"
+				        	destination="origin" />
+
+					</then>
+					<else>
+						<echo level="info" msg="tag v${version} already exists skip ${tags}" />
+					</else>
+
+				</if>
+			</then>
+			<else>
+				<echo level="error" msg="error try to call crete_release_one alone, -Dextensions" />
+			</else>
+		</if>
+		
+	</target>
+	
 	<target name="tag_one">
 		<tstamp>
 			<format property="TSTAMP" pattern="%Y%m%d_%H%M%S" />
@@ -162,7 +208,7 @@
 			<isset property="extension" />
 			<then>
 				<includepath classpath="task/tao/extension" />
-				<taskdef name="extensionVersion" classname="ExtensionTask" />
+				<taskdef name="extensionVersion" classname="ExtensionVersionTask" />
 
 				<extensionVersion extension="${extension}" taoPath="${tao.root}" versionprop='version' />
 
@@ -202,6 +248,37 @@
 
 	<target name="tag_extensions" description="Tag any extension according to manigest version">
 		<foreach list="${extensions.list}" param="extension" target="tag_one" />
+	</target>
+
+	<target name="show_available_extensions">
+		<includepath classpath="task/tao/extension" />
+		<taskdef name="extensionsList" classname="ExtensionsListTask" />
+		<extensionsList taoPath="${tao.root}" />
+	</target>
+
+	<target name="prepare_develop_PR">
+		<tstamp>
+			<format property="TSTAMP" pattern="%Y%m%d_%H%M%S" />
+		</tstamp>
+		<if>
+			<isset property="extension" />
+			<then>
+
+				<echo msg="Merge ext ${extension} with version v${version}" />
+				<gitcheckout
+		    		repository="${tao.root}/${extension}"
+		    		branchname="develop" />
+		    	<gitpull
+				    repository="${tao.root}/${extension}"
+				    source="origin" refspec="develop" />
+				<exec  command='hub pull-request develop -m "Automactic merge develop into master" - b master' passthru="true" dir="${tao.root}/${extension}/"/> 
+
+
+			</then>
+			<else>
+				<echo level="error" msg="error try to call prepare_develop_PR  with no extension" />
+			</else>
+		</if>
 	</target>
 
 </project>
