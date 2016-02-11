@@ -155,8 +155,11 @@
 	</target>
 	-->
 	
+	<target name="create_release" description="create release branch for any extension according to manifest version">
+		<foreach list="${extensions.list}" param="extension" target="create_release_one" />
+	</target>
 	
-	<target name="crete_release_one">
+	<target name="create_release_one">
 		<if>
 			<isset property="extension" />
 			<then>
