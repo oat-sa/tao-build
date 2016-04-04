@@ -1,14 +1,6 @@
 TAO build process
 =================
 
-
-(https://github.com//phing-task-tao/compare/develop)
-(https://github.com//extension-tao-delivery/compare/develop)
-(https://github.com//extension-tao-lti/compare/develop)
-(https://github.com//extension-tao-itemqti/compare/develop)
-(https://github.com//extension-tao-testqti/compare/develop) 
-(https://github.com//extension-tao-testtaker/compare/develop) 
-    https://github.com//phing-task-tao/compare/develop
     https://github.com//extension-tao-delivery/compare/develop
     https://github.com//extension-tao-lti/compare/develop
     https://github.com//extension-tao-itemqti/compare/develop
