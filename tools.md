@@ -9,7 +9,8 @@ How to release a new version of a TAO extension
     `composer require oat-sa/tao-build`
     
  - Initialize tao-build root
- `vendor/bin/phing -f vendor/oat-sa/tao-build/tools.xml -Dtao.root=/home/lionel/workspace/package-tao init`
+ 
+    `vendor/bin/phing -f vendor/oat-sa/tao-build/tools.xml -Dtao.root=/home/lionel/workspace/package-tao init`
 
 **Warning : Nerver commmit tao-build in deploy-test-package, it will make the deployment failed**
 
@@ -25,7 +26,7 @@ This script will fetch develop from github and create a branch release-?version_
 
 > TAO Tools > create_release_one:
 
->[gitcheckout] git-checkout command: /usr/bin/git checkout 'develop'
+> [gitcheckout] git-checkout command: /usr/bin/git checkout 'develop'
 [gitcheckout] git-checkout: checkout "/home/lionel/workspace/package-tao/funcAcl" repository
 Your branch is up-to-date with 'composer/develop'.
 Version found :2.7.2 [gitfetch] git-fetch command: /usr/bin/git fetch --all
@@ -51,7 +52,7 @@ If manifest is not up-to-date or no update have occurs since last release, you w
 
 > TAO Tools > create_release_one:
 
->[gitcheckout] git-checkout command: /usr/bin/git checkout 'develop'
+> [gitcheckout] git-checkout command: /usr/bin/git checkout 'develop'
 [gitcheckout] git-checkout: checkout "/home/lionel/workspace/package-tao/funcAcl" repository
 [gitcheckout] git-checkout output: Your branch is up-to-date with 'composer/develop'.
 Version found :2.7.1 [gitfetch] git-fetch command: /usr/bin/git fetch --all
