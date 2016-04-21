@@ -18,7 +18,7 @@ How to release a new version of a TAO extension
   
     `vendor/oat-sa/tao-build/bin/compareDevelop.sh`
 
-![compare develop and master](http://s31.postimg.org/ckawxvb09/compare.gif)
+![compare develop and master](http://s31.postimg.org/66oq1h189/compare.gif)
 
 #Release
 
