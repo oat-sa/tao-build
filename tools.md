@@ -14,6 +14,12 @@ How to release a new version of a TAO extension
 
 **Warning : Nerver commmit tao-build in deploy-test-package, it will make the deployment failed**
 
+ - Check your package status, compare and develop branch for each extension
+  
+    `vendor/oat-sa/tao-build/bin/compareDevelop.sh`
+
+![compare develop and master](http://s31.postimg.org/ckawxvb09/compare.gif)
+
 #Release
 
 *JS, CSS and Language should be compiled for the extension*
