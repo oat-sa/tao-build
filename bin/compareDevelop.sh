@@ -1,7 +1,7 @@
 #!/bin/bash
 
 extensions=(*)
-
+pwd=$(pwd)
 
 for ((i=0; i<${#extensions[@]}; i++)); do
 # Verify if : extension is a directory, a manifest exists in this extension directory,
@@ -23,7 +23,7 @@ for ((i=0; i<${#extensions[@]}; i++)); do
      echo OK
    else
      echo UPDATE REQUIRED
-     echo "vendor/bin/phing -f vendor/oat-sa/tao-build/tools.xml -Dtao.root=/home/lionel/workspace/package-tao -Dextension=${extensions[$i]} create_release_one"
+     echo "vendor/bin/phing -f vendor/oat-sa/tao-build/tools.xml -Dtao.root=$pwd -Dextension=${extensions[$i]} create_release_one"
    fi
   fi
 done
