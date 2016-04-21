@@ -38,7 +38,9 @@ In that case either no change occurs, so no release is needed, or developers for
  - modify scripts/update/Updater.php
 
 `git add manifest.php sripts/update/Updater.php`
+
 `git commit -m "bump versoin to ???"`
+
 `git push origin release-???`
 
  - Create PR release-??? to master
@@ -46,9 +48,13 @@ In that case either no change occurs, so no release is needed, or developers for
  - Merge back master to develop
 
 `git checkout master`
+
 `git pull origin master`
+
 `git checkout develop`
+
 `git pull origin develop`
+
 `git merge master`
 
  - Solve conflict if any
