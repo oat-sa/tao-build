@@ -250,7 +250,20 @@
 
 
 	<target name="tag_extensions" description="Tag any extension according to manigest version">
+		<if>
+			<isset property="extensions.list" />
+			<then> 
+				<echo msg="Extension list is set ${extensions.list} " />
+			</then>
+			<else>
+				<property name="extensions.list" value="tao,taoBackOffice,taoCe,taoDacSimple,taoDelivery,
+								taoDevTools,taoFrontOffice,taoGroups,taoItems,taoLti,
+                                taoLtiBasicOutcome,taoOutcomeRds,taoOutcomeUi,funcAcl,
+                                taoQtiItem,taoQtiTest,taoResultServer,taoTestLinear,taoTests,taoTestTaker,taoClientDiagnostic,taoProctoring"/>  
+            </else>
+        </if>
 		<foreach list="${extensions.list}" param="extension" target="tag_one" />
+
 	</target>
 
 	<target name="show_available_extensions">
