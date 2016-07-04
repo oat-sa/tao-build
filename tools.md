@@ -43,7 +43,7 @@ In that case either no change occurs, so no release is needed, or developers for
  - modify manifest.php
  - modify scripts/update/Updater.php
 
-`git add manifest.php sripts/update/Updater.php`
+`git add manifest.php scripts/update/Updater.php`
 
 `git commit -m "bump versoin to ???"`
 
