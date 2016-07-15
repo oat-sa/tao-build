@@ -45,7 +45,7 @@ In that case either no change occurs, so no release is needed, or developers for
 
 `git add manifest.php sripts/update/Updater.php`
 
-`git commit -m "bump versoin to ???"`
+`git commit -m "bump version to ???"`
 
 `git push origin release-???`
 
