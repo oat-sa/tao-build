@@ -1,9 +1,13 @@
-How to release a new version of a TAO extension 
-----------
+<!--
+-->
 
-#Initial setup
+# How to release a new version of a TAO extension 
 
- - Retrieve an update package of all your extensions you want to release 
+> This article describes the steps that are required to build a release of a TAO extension. 
+
+## Initial setup
+
+ - Retrieve an update package of all extensions you want to release 
  - Retrieve tao-build tools
 
     `composer require oat-sa/tao-build`
@@ -12,7 +16,7 @@ How to release a new version of a TAO extension
  
     `vendor/bin/phing -f vendor/oat-sa/tao-build/tools.xml -Dtao.root=/home/lionel/workspace/package-tao init`
 
-**Warning : Nerver commmit tao-build in deploy-test-package, it will make the deployment failed**
+**Warning : Nerver commmit tao-build in deploy-test-package, it will cause the deployment to fail**
 
  - Check your package status, compare and develop branch for each extension
   
@@ -20,15 +24,15 @@ How to release a new version of a TAO extension
 
 ![compare develop and master](http://s31.postimg.org/5xa728m7v/ezgif_com_gif_maker.gif)
 
-#Release
+## Release
 
-*JS, CSS and Language should be compiled for the extension*
+*JS, CSS and the translation files should be compiled for this extension*
 
  - Create the release branch for your extension *myTaoExtension*
 
     `vendor/bin/phing -f vendor/oat-sa/tao-build/tools.xml -Dtao.root=/home/lionel/workspace/package-tao -Dextension=myTaoExtension create_release_one`
     
-This script will fetch develop from github and create a branch release-?version_number? according to manifest of the extensions and push that branch to github. If every thing went well you will have the following output
+This script will fetch develop from github and create a branch *release-?version_number?* according to manifest of the extension and push this branch to github. If everything went well you will have the following output:
 
 ![create new tag](http://s31.postimg.org/oeikkfkaj/newtag.gif)
 
@@ -36,9 +40,11 @@ If manifest is not up-to-date or no update have occurs since last release, you w
 
 ![tag already exists](http://s31.postimg.org/aft66f1iz/tag_exit.gif)
 
-In that case either no change occurs, so no release is needed, or developers forgot to update the manifest and update scripts so you will have to do it yourself
+In that case either no change occurs, so no release is needed, or developers forgot to update the manifest and update scripts so you will have to do it yourself.
 
+```
     cd myTaoExtension
+```
 
  - modify manifest.php
  - modify scripts/update/Updater.php
